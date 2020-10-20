@@ -5,13 +5,7 @@
 /**************************************************************************** 
     reset
 ****************************************************************************/
-* {
-    -ms-user-select: none; 
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-  }
+* {-ms-user-select: none; -moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; user-select: none;}
 
 
 /**************************************************************************** 
@@ -19,7 +13,9 @@
 ****************************************************************************/
 /* Frame */
 html,body {overflow:hidden;min-width:1600px;min-height:800px}
-#wrap {visibility:visible;overflow:visible;position:relative;height:100%;font-size:3.6vw;letter-spacing:-0.03em;opacity:1}
+#wrap {visibility:visible;overflow:visible;position:relative;height:100%;font-size:3.6vw;letter-spacing:-0.03em;opacity:1;cursor:url('/img/type_a/cursor_center.png'), auto}
+#wrap.left {cursor:url('/img/type_a/cursor_right.png'), auto}
+#wrap.right {cursor:url('/img/type_a/cursor_left.png'), auto}
 
 
 /****************************************************************************
@@ -40,29 +36,32 @@ html,body {overflow:hidden;min-width:1600px;min-height:800px}
 #shop .txt_area p {font-family:'HGGGothicssi';font-size:55px;font-weight:800;color:#fff;line-height:1.2em;white-space:nowrap;text-indent:10%;text-shadow:2px 2px 5px rgba(0, 0, 0, 0.5);opacity:0}
 #shop .txt_area p:nth-child(2) {font-size:88px;color:#00c1f9}
 #shop .link_shop {position:absolute;top:40%;left:46%;opacity:0;transform:scale(1.1) translateY(20%)}
-#shop .link_shop:hover {animation:linkShop 1s infinite alternate ease-in-out}
 #shop .link_shop img {display:block;width:auto;height:25.83%}
 #shop .model {display:block;width:auto;height:100%}
 #wrap.left #shop {z-index:1;opacity:1;transform:translateX(0);transition:opacity 0.5s 0.5s ease-in-out}
 #wrap.left #shop .txt_area p {text-indent:0;opacity:1;transition:all 0.5s 1s ease-in-out}
 #wrap.left #shop .txt_area p:nth-child(2) {transition-delay:1.2s}
 #wrap.left #shop .txt_area p:nth-child(3) {transition-delay:1.4s}
-#wrap.left #shop .link_shop {opacity:1;transform:scale(1) translateY(0%);transition:all 0.5s 1.6s ease-in-out}
+#wrap.left #shop .link_shop {opacity:1;transform:scale(1) translateY(0%);transition:all 0.5s 1.6s ease-in-out;animation:linkShop 1s 2.2s infinite alternate ease-in-out}
 @keyframes linkShop {
     0%       {transform:scale(1) translateY(0)}
-    100%      {transform:scale(1.1) translateY(20%)}
+    100%     {transform:scale(1.1) translateY(20%)}
 }
 
 #fa {position:absolute;left:18%;bottom:0;height:61.94%;width:50%}
 #fa .txt_area {position:absolute;left:8%;top:-44%}
 #fa .txt_area p {text-align:left;opacity:0;transform:translateX(-10%)}
 #fa .txt_area p img {margin:0}
-#fa .link_shop {position:absolute;top:-3%;left:35%;opacity:0;transform:scale(1.1) translateX(-20%)}
-#fa .link_shop img {display:block;width:auto;height:25.83%}
+#fa .link_fa {position:absolute;top:-3%;left:35%;opacity:0;transform:scale(1.1) translateX(-20%)}
+#fa .link_fa img {display:block;width:auto;height:25.83%}
 #wrap.right #fa .txt_area p {opacity:1;transform:translateX(0);transition:all 0.5s 0.5s ease-in-out}
 #wrap.right #fa .txt_area p:nth-child(2) {transition-delay:0.7s}
 #wrap.right #fa .txt_area p:nth-child(3) {transition-delay:0.9s}
-#wrap.right #fa .link_shop {opacity:1;transform:scale(1) translateX(0%);transition:all 0.5s 1s ease-in-out}
+#wrap.right #fa .link_fa {opacity:1;transform:scale(1) translateX(0%);transition:all 0.5s 1s ease-in-out;animation:linkFa 1s 1.7s infinite alternate ease-in-out}
+@keyframes linkFa {
+    0%       {transform:translateX(0%)}
+    100%     {transform:translateX(-20%)}
+}
 
 #spreadBG {position:absolute;top:0;left:0;z-index:-1;height:100%}
 #spreadBG img {display:block;width:auto;max-width:none;height:100%}

@@ -101,27 +101,27 @@ $(function(){ // DOCUMENT READY...
 
 
 
-    $(window).bind('wheel', function(event){
-        if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-            // scroll up
-            if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
-                $sign.find('.btn_shop').click();
-            } else if ($mainWrap.hasClass('right')){
-                $mainWrap.removeClass('right');
-                $spread.css('left',(spreadW / 2 - winW / 2) * -1);
-            }
-        }
-        else {
-            // scroll down
-            console.log("스크롤 아래로");
-            if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
-                $sign.find('.btn_fa').click();
-            } else if ($mainWrap.hasClass('left')){
-                $mainWrap.removeClass('left');
-                $spread.css('left',(spreadW / 2 - winW / 2) * -1);
-            }
-        }
-    });
+    // $(window).bind('wheel', function(event){
+    //     if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
+    //         // scroll up
+    //         if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
+    //             $sign.find('.btn_shop').click();
+    //         } else if ($mainWrap.hasClass('right')){
+    //             $mainWrap.removeClass('right');
+    //             $spread.css('left',(spreadW / 2 - winW / 2) * -1);
+    //         }
+    //     }
+    //     else {
+    //         // scroll down
+    //         console.log("스크롤 아래로");
+    //         if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
+    //             $sign.find('.btn_fa').click();
+    //         } else if ($mainWrap.hasClass('left')){
+    //             $mainWrap.removeClass('left');
+    //             $spread.css('left',(spreadW / 2 - winW / 2) * -1);
+    //         }
+    //     }
+    // });
 
     //$sign.find('.btn_fa').click();
 
