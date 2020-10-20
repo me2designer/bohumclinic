@@ -1,0 +1,17 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+/**************************************************************************** 
+    layout
+****************************************************************************/
+/* Frame */
+html,body {}
+#wrap {visibility:visible;overflow:visible;position:relative;height:100%;font-size:3.6vw;letter-spacing:-0.03em;opacity:1}
+
+
+/****************************************************************************
+	content area
+****************************************************************************/
+#spreadBG {height:100%;pointer-events: none;}
+#spreadBG img {display:block;width:auto;max-width:none;height:100%;min-height:800px}
