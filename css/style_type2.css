@@ -28,10 +28,10 @@ html,body {overflow:hidden;min-width:1600px;min-height:800px}
 #shop .txt_area p {font-family:'HGGGothicssi';font-weight:800;color:#fff;line-height:1.2em;white-space:nowrap;text-indent:10%;text-shadow:2px 2px 5px rgba(0, 0, 0, 0.5);opacity:0}
 #shop .link_shop {position:absolute;top:67%;left:14%;opacity:0;transform:scale(1.1) translateY(20%)}
 #shop .link_shop img {display:block;width:80%;height:auto}
-#wrap.active #shop .txt_area p {text-indent:0;opacity:1;transition:opacity 0.5s ease-in-out, text-indent 0.5s ease-in-out}
-#wrap.active #shop .txt_area p:nth-child(1) {font-size:54%;transition-delay:1s}
-#wrap.active #shop .txt_area p:nth-child(2) {font-size:83%;color:#00c1f9;transition-delay:1.3s}
-#wrap.active #shop .txt_area p:nth-child(3) {font-size:60%;transition-delay:1.6s}
+#wrap.active #shop .txt_area p {text-indent:0;opacity:1;transition:opacity 0.5s ease-in-out, text-indent 0.5s ease-in-out;animation:txtUpDown 0.8s infinite alternate ease-in-out;}
+#wrap.active #shop .txt_area p:nth-child(1) {font-size:54%;transition-delay:1s;animation-delay:2s;}
+#wrap.active #shop .txt_area p:nth-child(2) {font-size:83%;color:#00c1f9;transition-delay:1.3s;animation-delay:2.2s;}
+#wrap.active #shop .txt_area p:nth-child(3) {font-size:60%;transition-delay:1.6s;animation-delay:2.4s;}
 #wrap.active #shop .link_shop {opacity:1;transform:scale(1) translateY(0%);transition:all 0.5s 1.9s ease-in-out;animation:linkShop 1s 2.4s infinite alternate ease-in-out}
 @keyframes linkShop {
     0%       {transform:scale(1) translateY(0)}
@@ -44,12 +44,17 @@ html,body {overflow:hidden;min-width:1600px;min-height:800px}
 #fa .txt_area p img {width:80%;margin:0;}
 #fa .link_fa {position:absolute;top:-95%;left:11%;opacity:0;transform:translate(-12%, -12%) rotate(20deg)}
 #fa .link_fa img {display:block;width:80%;height:auto}
-#wrap.active #fa .txt_area p {opacity:1;transform:translateX(0);transition:all 0.5s ease-in-out}
-#wrap.active #fa .txt_area p:nth-child(1) {transition-delay:2.4s}
-#wrap.active #fa .txt_area p:nth-child(2) {transition-delay:2.7s}
-#wrap.active #fa .txt_area p:nth-child(3) {transition-delay:3s}
+#wrap.active #fa .txt_area p {opacity:1;transform:translateX(0);transition:all 0.5s ease-in-out;animation:txtUpDown 0.8s infinite alternate ease-in-out;}
+#wrap.active #fa .txt_area p:nth-child(1) {transition-delay:2.4s;animation-delay:3.8s;}
+#wrap.active #fa .txt_area p:nth-child(2) {transition-delay:2.7s;animation-delay:4s;}
+#wrap.active #fa .txt_area p:nth-child(3) {transition-delay:3s;animation-delay:4.2s;}
 #wrap.active #fa .link_fa {opacity:1;transform:translate(0) rotate(20deg);transition:all 0.5s 3.3s ease-in-out;animation:linkFa 1s 2.4s infinite alternate ease-in-out}
 @keyframes linkFa {
     0%       {transform:translate(0) rotate(20deg)}
     100%     {transform:translate(-12%, -12%) rotate(20deg)}
+}
+
+@keyframes txtUpDown {
+    0%          {transform:translateY(0)}
+    80%, 100%        {transform:translateY(10%)}
 }

@@ -21,28 +21,29 @@ html,body {overflow:hidden;min-width:1600px;min-height:800px}
 /****************************************************************************
 	content area
 ****************************************************************************/
-#sign {text-align:center;height:100%;transition:all 1s ease-in-out}
+#sign {text-align:center;height:100%}
 #sign .inner {display:inline-block;position:relative;height:100%}
 #sign .btn_shop {position:absolute;top:22.78%;left:0;height:9.2%}
 #sign .btn_fa {display:flex;justify-content:flex-end;position:absolute;top:30.78%;right:0;height:9.2%}
 #sign .btn_shop img,
 #sign .btn_fa img {display:block;width:auto;max-width:none;height:100%}
 #sign .bg {display:block;width:auto;height:100%}
-#wrap.left #sign {transform:translateX(100%);}
-#wrap.right #sign {transform:translateX(-100%)}
+#wrap.center #sign {transition:all 2s ease-in-out}
+#wrap.left #sign {transform:translateX(100%);transition:all 3s ease-in-out}
+#wrap.right #sign {transform:translateX(-100%);transition:all 3s ease-in-out}
 
 #shop {position:absolute;left:18%;bottom:0;height:61.94%;width:50%;opacity:0;transform:translateX(-50%);transition:transform 1.5s ease-in-out, opacity 0.5s ease-in-out}
 #shop .txt_area {position:absolute;left:22%;top:-10%;}
 #shop .txt_area p {font-family:'HGGGothicssi';font-size:55px;font-weight:800;color:#fff;line-height:1.2em;white-space:nowrap;text-indent:10%;text-shadow:2px 2px 5px rgba(0, 0, 0, 0.5);opacity:0}
 #shop .txt_area p:nth-child(2) {font-size:88px;color:#00c1f9}
-#shop .link_shop {position:absolute;top:40%;left:46%;opacity:0;transform:scale(1.1) translateY(20%)}
+#shop .link_shop {position:absolute;top:40%;left:46%;opacity:0;transform:scale(3.1) translateY(20%)}
 #shop .link_shop img {display:block;width:auto;height:25.83%}
 #shop .model {display:block;width:auto;height:100%}
-#wrap.left #shop {z-index:1;opacity:1;transform:translateX(0);transition:opacity 0.5s 0.5s ease-in-out}
-#wrap.left #shop .txt_area p {text-indent:0;opacity:1;transition:all 0.5s 1s ease-in-out}
-#wrap.left #shop .txt_area p:nth-child(2) {transition-delay:1.2s}
-#wrap.left #shop .txt_area p:nth-child(3) {transition-delay:1.4s}
-#wrap.left #shop .link_shop {opacity:1;transform:scale(1) translateY(0%);transition:all 0.5s 1.6s ease-in-out;animation:linkShop 1s 2.2s infinite alternate ease-in-out}
+#wrap.left #shop {z-index:1;opacity:1;transform:translateX(0);transition:opacity 0.5s 2s ease-in-out}
+#wrap.left #shop .txt_area p {text-indent:0;opacity:1;transition:all 0.5s 2s ease-in-out;animation:txtUpDown 0.6s 3s ease-in-out infinite alternate}
+#wrap.left #shop .txt_area p:nth-child(2) {transition-delay:2.2s;animation-delay:3.2s}
+#wrap.left #shop .txt_area p:nth-child(3) {transition-delay:2.4s;animation-delay:3.4s}
+#wrap.left #shop .link_shop {opacity:1;transform:scale(1) translateY(0%);transition:all 0.5s 2.6s ease-in-out;animation:linkShop 1s 2.2s infinite alternate ease-in-out}
 @keyframes linkShop {
     0%       {transform:scale(1) translateY(0)}
     100%     {transform:scale(1.1) translateY(20%)}
@@ -54,10 +55,10 @@ html,body {overflow:hidden;min-width:1600px;min-height:800px}
 #fa .txt_area p img {margin:0;width:80%}
 #fa .link_fa {position:absolute;top:-13%;left:35%;opacity:0;transform:scale(1.1) translateX(-20%)}
 #fa .link_fa img {display:block;width:auto;height:25.83%}
-#wrap.right #fa .txt_area p {opacity:1;transform:translateX(0);transition:all 0.5s 0.5s ease-in-out}
-#wrap.right #fa .txt_area p:nth-child(2) {transition-delay:0.7s}
-#wrap.right #fa .txt_area p:nth-child(3) {transition-delay:0.9s}
-#wrap.right #fa .link_fa {opacity:1;transform:scale(1) translateX(0%);transition:all 0.5s 1s ease-in-out;animation:linkFa 1s 1.7s infinite alternate ease-in-out}
+#wrap.right #fa .txt_area p {opacity:1;transform:translateX(0);transition:all 0.5s 2s ease-in-out;animation:txtUpDown 0.6s 3s ease-in-out infinite alternate}
+#wrap.right #fa .txt_area p:nth-child(2) {transition-delay:2.2s;animation-delay:3.2s}
+#wrap.right #fa .txt_area p:nth-child(3) {transition-delay:2.4s;animation-delay:3.2s}
+#wrap.right #fa .link_fa {opacity:1;transform:scale(1) translateX(0%);transition:all 0.5s 2.7s ease-in-out;animation:linkFa 1s 3.2s infinite alternate ease-in-out}
 @keyframes linkFa {
     0%       {transform:translateX(0%)}
     100%     {transform:translateX(-20%)}
@@ -65,3 +66,11 @@ html,body {overflow:hidden;min-width:1600px;min-height:800px}
 
 #spreadBG {position:absolute;top:0;left:0;z-index:-1;height:100%}
 #spreadBG img {display:block;width:auto;max-width:none;height:100%}
+#wrap.center #spreadBG {transition:all 2s ease-in-out}
+#wrap.left #spreadBG,
+#wrap.right #spreadBG {transition:all 3s ease-in-out}
+
+@keyframes txtUpDown {
+    0%          {transform:translateY(0)}
+    80%, 100%        {transform:translateY(10%)}
+}

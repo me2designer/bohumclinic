@@ -82,20 +82,21 @@ $(function(){ // DOCUMENT READY...
     var spreadW = $spread.width();
 
     setTimeout(function(){
-        $spread.css('transition','all 1s ease-in-out');
+        $mainWrap.addClass('center');
+        //$spread.css('transition','all 8s');
     },50);
 
 
     // shop 화면이동
     $sign.find('.btn_shop').on('click', function () {
         $spread.css('left',0);
-        $mainWrap.addClass('left');
+        $mainWrap.addClass('left').removeClass('center');
     });
 
     // FA 화면이동
     $sign.find('.btn_fa').on('click', function () {
         $spread.css('left',(spreadW - winW) * -1);
-        $mainWrap.addClass('right');
+        $mainWrap.addClass('right').removeClass('center');
     });
 
 
@@ -106,8 +107,8 @@ $(function(){ // DOCUMENT READY...
             if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
                 $sign.find('.btn_shop').click();
             } else if ($mainWrap.hasClass('right')){
-                $mainWrap.removeClass('right');
-                $spread.css('left',(spreadW / 2 - winW / 2) * -1);
+                $mainWrap.removeClass('right').addClass('center');;
+                $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
             }
         }
         else {
@@ -116,8 +117,8 @@ $(function(){ // DOCUMENT READY...
             if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
                 $sign.find('.btn_fa').click();
             } else if ($mainWrap.hasClass('left')){
-                $mainWrap.removeClass('left');
-                $spread.css('left',(spreadW / 2 - winW / 2) * -1);
+                $mainWrap.removeClass('left').addClass('center');;
+                $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
             }
         }
     });
@@ -128,8 +129,8 @@ $(function(){ // DOCUMENT READY...
         if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
             $sign.find('.btn_shop').click();
         } else if ($mainWrap.hasClass('right')){
-            $mainWrap.removeClass('right');
-            $spread.css('left',(spreadW / 2 - winW / 2) * -1);
+            $mainWrap.removeClass('right').addClass('center');
+            $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
         }
     }
 
@@ -139,8 +140,8 @@ $(function(){ // DOCUMENT READY...
         if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
             $sign.find('.btn_fa').click();
         } else if ($mainWrap.hasClass('left')){
-            $mainWrap.removeClass('left');
-            $spread.css('left',(spreadW / 2 - winW / 2) * -1);
+            $mainWrap.removeClass('left').addClass('center');;
+            $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
         }
     }
 
