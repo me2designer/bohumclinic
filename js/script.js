@@ -144,7 +144,7 @@ $(function(){ // DOCUMENT READY...
         }
     }
 
-    $spread.css('left',(spreadW / 2 - winW / 2) * -1);
+    $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
 
 
 })();/*
