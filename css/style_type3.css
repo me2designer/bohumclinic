@@ -8,7 +8,7 @@
 ****************************************************************************/
 /* Frame */
 html,body {overflow:hidden;background-color: black;}
-#wrap {visibility:visible;overflow:visible;position:fixed;top:50%;left:50%;width:1920px;height:920px;font-family:'NotoSansKR',sans-serif;letter-spacing:-0.03em;opacity:1;transform:translate(-50%, -50%);}
+#wrap {visibility:visible;overflow:hidden;position:fixed;top:50%;left:50%;width:1920px;height:920px;font-family:'NotoSansKR',sans-serif;letter-spacing:-0.03em;opacity:1;transform:translate(-50%, -50%);}
 
 #footer {position:absolute;left:50%;bottom:40px;width:730px;transform:translateX(-50%);text-shadow:2px 2px 0 rgba(255, 255, 255, 1);transition:all 0.4s}
 #footer:after {content:"";display:block;clear:both}
