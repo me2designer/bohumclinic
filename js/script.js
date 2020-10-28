@@ -5,11 +5,9 @@ $(function(){ // DOCUMENT READY...
 
 
 
-    window.onresize = function() {
-        document.location.reload();
-    };
-
     $('img').on('dragstart', function(event) { event.preventDefault(); });
+
+    
 
 })();/*
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -95,7 +93,8 @@ $(function(){ // DOCUMENT READY...
 
     // FA 화면이동
     $sign.find('.btn_fa').on('click', function () {
-        $spread.css('left',(spreadW - winW) * -1);
+        console.log('a');
+        $spread.css('left','-2560px');
         $mainWrap.addClass('right').removeClass('center');
     });
 
