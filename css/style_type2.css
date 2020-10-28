@@ -19,9 +19,11 @@ html,body {overflow:hidden;min-width:1600px;min-height:800px}
 /****************************************************************************
 	content area
 ****************************************************************************/
-#sign {height:100%;opacity:0;transition:1s ease-in-out}
+#sign {position:absolute;left:50%;height:100%;opacity:0;transform:translateX(-50%);transition:1s ease-in-out}
+#sign .tit {position:absolute;top:478px;left:68px;font-family:'HGGGothicssi',sans-serif;font-size:45px;font-weight:800;color:#fff;opacity:0;transform:perspective(500px) rotateX(0)}
 #sign img {width:auto;height:100%}
 #wrap.active #sign {opacity:1}
+#wrap.active #sign .tit {opacity:1;transform:perspective(500px) rotateX(1440deg);transition:opacity 1.5s 0.5s, transform 2s 0.5s ease-out}
 
 #shop {position:absolute;left:13.2%;top:36%;height:50%;width:30%}
 #shop .txt_area {position:absolute;left:0;top:0}
