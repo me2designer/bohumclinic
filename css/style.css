@@ -43,9 +43,9 @@ html,body {overflow:hidden;background-color:#000}
 #wrap.center #sign {transition:all 2s ease-in-out}
 #wrap.left #sign {transform:translateX(100%);transition:all 3s ease-in-out}
 #wrap.right #sign {transform:translateX(-100%);transition:all 3s ease-in-out}
-#wrap.active #sign .board {top:40px;transition:all 0.5s 0.5s cubic-bezier(.73,.01,.48,1.12)}
-#wrap.active #sign .btn_shop {animation:signBtnLoop 4s 1s infinite}
-#wrap.active #sign .btn_fa {animation:signBtnLoop 4s 3s infinite}
+#wrap.active #sign .board {top:40px;transition:all 0.8s 0.5s ease-out}
+#wrap.active #sign .btn_shop {animation:signBtnLoop 4s 1.5s infinite}
+#wrap.active #sign .btn_fa {animation:signBtnLoop 4s 3.5s infinite}
 @keyframes signBtnLoop {
     13%                   {transform:perspective(3000px) rotateY(-30deg);filter:brightness(1.2)}
     18%                   {transform:perspective(3000px) rotateY(40deg);filter:brightness(0.6)}
