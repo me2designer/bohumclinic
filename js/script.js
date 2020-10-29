@@ -7,7 +7,7 @@ $(function(){ // DOCUMENT READY...
 
     $('img').on('dragstart', function(event) { event.preventDefault(); });
 
-    
+
 
 })();/*
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -74,31 +74,127 @@ $(function(){ // DOCUMENT READY...
 
 
     var $mainWrap = $('#wrap');
+    var $paging = $('#pagination');
     var $sign = $('#sign');
     var $spread = $('#spreadBG');
     var winW = window.outerWidth;
     var spreadW = $spread.width();
 
     setTimeout(function(){
-        $mainWrap.addClass('center');
-        //$spread.css('transition','all 8s');
+        $mainWrap.addClass('center active');
+        $paging.find('.page2 i').css('width','100%');
     },50);
 
 
+    $paging.find('.page1').on('click', function() {
+        $sign.find('.btn_shop').click();
+    });
+
+    $paging.find('.page2').on('click', function() {
+        AlignCenter();
+    });
+
+    $paging.find('.page3').on('click', function() {
+        $sign.find('.btn_fa').click();
+    });
+
     // shop 화면이동
-    $sign.find('.btn_shop').on('click', function () {
-        $spread.css('left',0);
-        $mainWrap.addClass('left').removeClass('center');
+    $sign.find('.btn_shop').on('click', function() {
+        if( !$mainWrap.hasClass('pointerNone') ){
+            $mainWrap.addClass('pointerNone');
+
+            if( $mainWrap.hasClass('center') ){
+                $paging.find('.page2 i').css({
+                    'left' : 0,
+                    'right' : 'auto'
+                }).animate({ 'width' : 0 }, 1600);
+
+                $paging.find('.page1 i').css({
+                    'left' : 'auto',
+                    'right' : 0
+                }).animate({ 'width' : '100%' }, 1600, function(){
+                    $mainWrap.removeClass('pointerNone');
+                });
+
+                $spread.css('left',0);
+                $mainWrap.addClass('left').removeClass('right center');
+            }            
+        } else if ( $mainWrap.hasClass('right') ){
+            $paging.find('.page2 i').css({
+                'left' : 'auto',
+                'right' : 0
+            }).animate({ 'width' : '100%' }, 1300);
+
+            $paging.find('.page3 i').css({
+                'left' : 0,
+                'right' : 'auto'
+            }).animate({ 'width' : 0 }, 1300, function(){
+                $paging.find('.page2 i').css({
+                    'left' : 0,
+                    'right' : 'auto'
+                }).animate({ 'width' : 0 }, 1200);
+
+                $paging.find('.page1 i').css({
+                    'left' : 'auto',
+                    'right' : 0
+                }).animate({ 'width' : '100%' }, 1200, function(){
+                    $mainWrap.removeClass('pointerNone');
+                });
+            });
+
+            $spread.css('left',0);
+            $mainWrap.addClass('left').removeClass('right center');
+        }
     });
 
     // FA 화면이동
     $sign.find('.btn_fa').on('click', function () {
-        console.log('a');
-        $spread.css('left','-2560px');
-        $mainWrap.addClass('right').removeClass('center');
+        if( !$mainWrap.hasClass('pointerNone') ){
+            $mainWrap.addClass('pointerNone');
+
+            if( $mainWrap.hasClass('center') ){
+                $paging.find('.page2 i').css({
+                    'left' : 'auto',
+                    'right' : 0
+                }).animate({ 'width' : 0 }, 1600);
+
+                $paging.find('.page3 i').css({
+                    'left' : 0,
+                    'right' : 'auto'
+                }).animate({ 'width' : '100%' }, 1600, function(){
+                    $mainWrap.removeClass('pointerNone');
+                });
+
+                $spread.css('left','-2560px');
+                $mainWrap.addClass('right').removeClass('left center');
+            } else if ( $mainWrap.hasClass('left') ){
+                $paging.find('.page1 i').css({
+                    'left' : 'auto',
+                    'right' : 0
+                }).animate({ 'width' : 0 }, 1300);
+
+                $paging.find('.page2 i').css({
+                    'left' : 0,
+                    'right' : 'auto'
+                }).animate({ 'width' : '100%' }, 1300, function(){
+                    $paging.find('.page2 i').css({
+                        'left' : 'auto',
+                        'right' : 0
+                    }).animate({ 'width' : 0 }, 1200);
+
+                    $paging.find('.page3 i').css({
+                        'left' : 0,
+                        'right' : 'auto'
+                    }).animate({ 'width' : '100%' }, 1200, function(){
+                        $mainWrap.removeClass('pointerNone');
+                    });
+                });
+
+                $spread.css('left','-2560px');
+                $mainWrap.addClass('right').removeClass('left center');
+            }
+        }
     });
-
-
 
     $(window).bind('wheel', function(event){
         if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
@@ -106,45 +202,73 @@ $(function(){ // DOCUMENT READY...
             if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
                 $sign.find('.btn_shop').click();
             } else if ($mainWrap.hasClass('right')){
-                $mainWrap.removeClass('right').addClass('center');;
-                $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
+                AlignCenter();
             }
         }
         else {
             // scroll down
-            console.log("스크롤 아래로");
             if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
                 $sign.find('.btn_fa').click();
             } else if ($mainWrap.hasClass('left')){
-                $mainWrap.removeClass('left').addClass('center');;
-                $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
+                AlignCenter();
             }
         }
     });
 
     toRight = function() {
-        console.log("to right");
-
         if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
             $sign.find('.btn_shop').click();
         } else if ($mainWrap.hasClass('right')){
-            $mainWrap.removeClass('right').addClass('center');
-            $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
+            AlignCenter();
         }
     }
 
     toLeft = function() {
-        console.log("to left");
-
         if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
             $sign.find('.btn_fa').click();
         } else if ($mainWrap.hasClass('left')){
-            $mainWrap.removeClass('left').addClass('center');;
-            $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
+            AlignCenter();
         }
     }
 
     $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
+
+    AlignCenter = function(){
+        if( !$mainWrap.hasClass('pointerNone') ){
+            $mainWrap.addClass('pointerNone');
+
+            if($mainWrap.hasClass('left')){
+                $paging.find('.page2 i').css({
+                    'left' : 0,
+                    'right' : 'auto'
+                }).animate({ 'width' : '100%' }, 800);
+
+                $paging.find('.page1 i').css({
+                    'left' : 'auto',
+                    'right' : 0,
+                }).animate({ 'width' : 0 }, 800, function(){
+                    $mainWrap.removeClass('pointerNone');
+                });
+            } else if ($mainWrap.hasClass('right')){
+                $paging.find('.page2 i').css({
+                    'left' : 'auto',
+                    'right' : 0
+                }).animate({ 'width' : '100%' }, 800);
+
+                $paging.find('.page3 i').css({
+                    'left' : 0,
+                    'right' : 'auto',
+                }).animate({ 'width' : 0 }, 800, function(){
+                    $mainWrap.removeClass('pointerNone');
+                });
+            }
+
+            $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
+            $mainWrap.addClass('center').removeClass('left right');
+        }
+    }
+
+
 
 
 })();/*
