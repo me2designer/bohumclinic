@@ -35,8 +35,8 @@ html,body {overflow:hidden;background-color: black;}
 .active[slide-index="3"] .prograss {background-image:url('/img/type_c/progress4.png')}
 
 .gate {position:absolute;z-index:3;width:100%;height:100%}
-.gate .btn_area {position:absolute;top:350px;left:50%;z-index:1;transform:translateX(-50%);transition:all 0.4s}
-.gate .btn_area:after {content:'';position:absolute;top:12px;left:50%;width:2px;height:41px;background-color:#4a4545;}
+.gate .btn_area {position:absolute;top:380px;left:50%;z-index:1;transform:translateX(-50%);transition:all 0.4s}
+.gate .btn_area:after {content:'';position:absolute;top:12px;left:52%;width:2px;height:41px;background-color:#4a4545;}
 .gate .btn_area button {position:relative;font-size:40px;font-weight:300;color:#524e4e;letter-spacing:-0.12em;text-shadow:2px 2px 0 rgba(255, 255, 255, 1)}
 .gate .btn_area button:nth-child(1) {margin-right:20px}
 .gate .btn_area button:nth-child(2) {margin-left:20px}
@@ -45,22 +45,23 @@ html,body {overflow:hidden;background-color: black;}
 .gate .btn_area button:nth-child(2):after {top:24px;right:-25px;transform: rotate(135deg)}
 .gate .btn_area button:nth-child(1):hover:after {animation:btnFa 0.5s infinite alternate ease-in-out}
 .gate .btn_area button:nth-child(2):hover:after {animation:btnShop 0.5s infinite alternate ease-in-out}
+.gate .btn_area button strong {font-weight:500}
 .gate .model {position:absolute;bottom:0;height:920px;background:0 0 no-repeat;background-size:cover}
-.gate .model1 {right:-40px;width:468px;background-image:url('/img/type_c/model1.png')}
+.gate .model1 {right:-40px;width:806px;background-image:url('/img/type_c/model1.png')}
 .gate .model2 {width:793px;background-image:url('/img/type_c/model2.png');opacity:0;pointer-events:none}
-.gate .model3 {left:-60px;width:806px;background-image:url('/img/type_c/model3.png?v=1')}
+.gate .model3 {left:-20px;width:468px;background-image:url('/img/type_c/model3.png?v=1')}
 .gate .model4 {width:738px;background-image:url('/img/type_c/model4.png');opacity:0;pointer-events:none}
 .active .gate {pointer-events:none}
 .active .gate .btn_area {opacity:0}
 .active .gate .model {opacity:0;transition:all 0.4s}
-.active .gate .model1 {right:0px}
+.active .gate .model1 {right:30px}
 .active .gate .model2 {right:48px}
-.active .gate .model3 {left:49px}
+.active .gate .model3 {left:19px}
 .active .gate .model4 {left:50px}
-.active[slide-index="0"] .gate .model1 {right:33px;opacity:1}
+.active[slide-index="0"] .gate .model1 {right:63px;opacity:1}
 .active[slide-index="0"] .gate .model3 {left:-60px}
 .active[slide-index="1"] .gate .model2 {right:78px;opacity:1}
-.active[slide-index="2"] .gate .model3 {left:79px;opacity:1}
+.active[slide-index="2"] .gate .model3 {left:49px;opacity:1}
 .active[slide-index="2"] .gate .model1 {right:-40px}
 .active[slide-index="3"] .gate .model4 {left:80px;opacity:1}
 @keyframes btnFa {
@@ -71,10 +72,10 @@ html,body {overflow:hidden;background-color: black;}
 }
 
 .strap {position:absolute;top:0;left:0;right:0;bottom:0;z-index:2;pointer-events:none}
-.strap .shop {position:absolute;bottom:0;right:280px;width:126px;height:317px;border-top-right-radius:8px;background:linear-gradient(145deg,#14b8ff, #109dff, #109dff, #109dff,#0a78ff );transform:skewX(21deg);transform-origin:right bottom;box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.5)}
-.strap .shop_shadow {position:absolute;bottom:0;right:466px;z-index:-1;width:126px;height:317px;border-radius:4px 8px 0 0;background:linear-gradient(45deg,#1581cb 50%, #2572a8 80%);transform:skewX(-21deg)}
-.strap .fa {position:absolute;top:0;left:425px;width:188px;height:495px;border-bottom-right-radius:13px;background:linear-gradient(145deg,#61d349, #77c254, #77c254, #77c254,#85c241 );transform:skewX(-21deg);transform-origin:left top;box-shadow:inset 1px 0 0 rgba(255, 255, 255, 0.3)}
-.strap .fa_shadow {position:absolute;top:0;left:129px;z-index:-1;width:188px;height:495px;background:linear-gradient(160deg,#5ca739 50%, #448f2a 80%);transform:skewX(21deg)}
+.strap .shop {position:absolute;bottom:0;right:130px;width:186px;height:440px;border-top-right-radius:8px;background:linear-gradient(145deg,#14b8ff, #109dff, #109dff, #109dff,#0a78ff );transform:skewX(21deg);transform-origin:right bottom;box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.5)}
+.strap .shop_shadow {position:absolute;bottom:0;right:387px;z-index:-1;width:186px;height:440px;border-radius:4px 8px 0 0;background:linear-gradient(45deg,#1581cb 50%, #2572a8 80%);transform:skewX(-21deg)}
+.strap .fa {position:absolute;top:0;left:495px;width:120px;height:330px;border-bottom-right-radius:13px;background:linear-gradient(145deg,#61d349, #77c254, #77c254, #77c254,#85c241 );transform:skewX(-21deg);transform-origin:left top;box-shadow:inset 1px 0 0 rgba(255, 255, 255, 0.3)}
+.strap .fa_shadow {position:absolute;top:0;left:302px;z-index:-1;width:120px;height:330px;border-radius:0 0 13px 4px;background:linear-gradient(160deg,#5ca739 50%, #448f2a 80%);transform:skewX(21deg)}
 .strap .box_tit {position:absolute;top:200px;opacity:0}
 .strap .box_tit .tit {margin-bottom:30px;font-family:'HGGGothicssi',sans-serif;font-size:49px;font-weight:200;color:#fff;line-height:1.2em;letter-spacing:-0.025em}
 .strap .box_tit .tit em {position:relative;font-weight:600}
