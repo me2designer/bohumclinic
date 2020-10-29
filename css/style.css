@@ -68,7 +68,7 @@ html,body {overflow:hidden;background-color:#000}
 #shop .model {display:block;width:auto;height:100%;opacity:0;transform:translateX(-50%)}
 #wrap.left #shop {pointer-events:all}
 #wrap.left #shop .txt_area p {text-indent:0;opacity:1;transition:text-indent 0.5s 2s ease-in-out, opacity 0.5s 2s ease-in-out}
-#wrap.left #shop .txt_area p:nth-child(2) {transition-delay:2.2s;animation:textShopLoop 1s 2.2s alternate infinite ease-in-out}
+#wrap.left #shop .txt_area p:nth-child(2) {transition-delay:2.2s;animation:textShopLoop 1s 1.2s alternate infinite ease-in-out}
 #wrap.left #shop .txt_area p:nth-child(3) {transition-delay:2.4s}
 #wrap.left #shop .link_shop {opacity:1;transform:scale(1) translateY(0%);transition:all 0.5s 2.6s ease-in-out;animation:linkShop 1s 2.2s infinite alternate ease-in-out}
 #wrap.left #shop .model {opacity:1;transform:translateX(0);transition:opacity 0.5s 2s ease-in-out;}
@@ -90,7 +90,7 @@ html,body {overflow:hidden;background-color:#000}
 #fa .link_fa img {display:block;width:auto;height:25.83%}
 #wrap.right #fa {pointer-events:all}
 #wrap.right #fa .txt_area p {opacity:1;transform:translateX(0);transition:all 0.5s 2s ease-in-out}
-#wrap.right #fa .txt_area p:nth-child(2) {transition-delay:2.2s;animation:textFaLoop 1s 3.2s alternate infinite ease-in-out}
+#wrap.right #fa .txt_area p:nth-child(2) {transition-delay:2.2s;animation:textFaLoop 1s 2.2s alternate infinite ease-in-out}
 #wrap.right #fa .txt_area p:nth-child(3) {transition-delay:2.4s}
 #wrap.right #fa .link_fa {opacity:1;transform:scale(1) translateX(0%);transition:all 0.5s 2.7s ease-in-out;animation:linkFa 1s 3.2s infinite alternate ease-in-out}
 @keyframes linkFa {
