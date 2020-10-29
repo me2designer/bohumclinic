@@ -4,7 +4,13 @@ $(function(){ // DOCUMENT READY...
 */(function(){
 
 
+    /* WRAP */
+    $wrap = $('#wrap');
 
+    $wrap.css({
+        'visibility':'visible',
+        'opacity' : 1,
+    });
 
 
 })();/*

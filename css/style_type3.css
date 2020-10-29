@@ -8,9 +8,9 @@
 ****************************************************************************/
 /* Frame */
 html,body {overflow:hidden;background-color: black;}
-#wrap {visibility:visible;overflow:hidden;position:fixed;top:50%;left:50%;width:1920px;height:920px;font-family:'NotoSansKR',sans-serif;letter-spacing:-0.03em;opacity:1;transform:translate(-50%, -50%);}
+#wrap {visibility:visible;overflow:hidden;position:fixed;top:50%;left:50%;width:1920px;height:920px;font-family:'NotoSansKR',sans-serif;letter-spacing:-0.03em;transform:translate(-50%, -50%);}
 
-#footer {position:absolute;left:50%;bottom:40px;width:730px;transform:translateX(-50%);text-shadow:2px 2px 0 rgba(255, 255, 255, 1);transition:all 0.4s}
+#footer {position:absolute;left:50%;bottom:40px;width:730px;transform:translateX(-50%);text-shadow:2px 2px 0 rgba(255, 255, 255, 1);transition:opacity 0.4s}
 #footer:after {content:"";display:block;clear:both}
 #footer .logo {float:left;margin-right:20px}
 #footer address {padding-top:10px;font-size:14px;color:#373737}
@@ -35,12 +35,12 @@ html,body {overflow:hidden;background-color: black;}
 .active[slide-index="3"] .prograss {background-image:url('/img/type_c/progress4.png')}
 
 .gate {position:absolute;z-index:3;width:100%;height:100%}
-.gate .btn_area {position:absolute;top:380px;left:50%;z-index:1;transform:translateX(-50%);transition:all 0.4s}
+.gate .btn_area {position:absolute;top:380px;left:50%;z-index:1;transform:translateX(-50%)}
 .gate .btn_area:after {content:'';position:absolute;top:12px;left:52%;width:2px;height:41px;background-color:#4a4545;}
 .gate .btn_area button {position:relative;font-size:40px;font-weight:300;color:#524e4e;letter-spacing:-0.12em;text-shadow:2px 2px 0 rgba(255, 255, 255, 1)}
 .gate .btn_area button:nth-child(1) {margin-right:20px}
 .gate .btn_area button:nth-child(2) {margin-left:20px}
-.gate .btn_area button:after {content:'';display:block;position:absolute;width:18px;height:18px;border-top:2px solid #4a4545;border-left:2px solid #4a4545}
+.gate .btn_area button:after {content:'';display:block;position:absolute;width:18px;height:18px;border-top:2px solid #4a4545;border-left:2px solid #4a4545;transition:all 0.4s}
 .gate .btn_area button:nth-child(1):after {top:24px;left:-20px;transform: rotate(-45deg)}
 .gate .btn_area button:nth-child(2):after {top:24px;right:-25px;transform: rotate(135deg)}
 .gate .btn_area button:nth-child(1):hover:after {animation:btnFa 0.5s infinite alternate ease-in-out}

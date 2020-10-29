@@ -19,7 +19,7 @@ html,body {overflow:hidden;min-width:1600px;min-height:800px}
 /****************************************************************************
 	content area
 ****************************************************************************/
-#sign {position:absolute;left:50%;height:100%;opacity:0;transform:translateX(-50%);transition:1s ease-in-out}
+#sign {position:absolute;left:50%;height:100%;opacity:0;transform:translateX(-50%);transition:opacity 1s ease-in-out}
 #sign .tit {position:absolute;top:478px;left:68px;font-family:'HGGGothicssi',sans-serif;font-size:45px;font-weight:800;color:#fff;opacity:0;transform:perspective(500px) rotateX(0)}
 #sign img {width:auto;height:100%}
 #wrap.active #sign {opacity:1}

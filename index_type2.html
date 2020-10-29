@@ -15,20 +15,41 @@
 <link rel="shortcut icon" type="image/x-icon" href="https://www.bohumclinic.com/img/main/gate_favicon.png">
 <link rel="apple-touch-icon-precomposed" href="https://www.bohumclinic.com/img/main/gate_favicon.png">
 
-<!-- PLUGINS CSS STYLE -->
-<link rel="stylesheet" href="//fonts.peoplelife.co.kr/fonts/HGGGothicssi/HGGGothicssi.css">
-<link rel="stylesheet" href="//public.peoplelife.co.kr/lib/swiper/swiper.css">
-<link rel="stylesheet" href="//public.peoplelife.co.kr/css/reset.css">
-<link rel="stylesheet" href="//public.peoplelife.co.kr/css/common_pc.css">
-<link rel="stylesheet" href="/css/style_type2.css?=<?php echo time(); ?>">
+<!-- FILES -->
+<script>
+    cache = '?v='+(new Date).getTime();
 
-<!-- JS -->
-<script type="text/javascript" src="//public.peoplelife.co.kr/lib/jquery/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="//public.peoplelife.co.kr/lib/swiper/swiper.js"></script>
-<script type="text/javascript" src="//public.peoplelife.co.kr/js/modules.js"></script>
-<script type="text/javascript" src="js/script_type2.js?=<?php echo time(); ?>"></script>
+    var files = [
+        '//fonts.peoplelife.co.kr/fonts/HGGGothicssi/HGGGothicssi.css',
+        '//public.peoplelife.co.kr/lib/swiper/swiper.css',
+        '//public.peoplelife.co.kr/css/reset.css',
+        '//public.peoplelife.co.kr/css/common_pc.css',
+        '/css/style_type2.css',
 
+        '//public.peoplelife.co.kr/lib/jquery/jquery-3.4.1.min.js',
+        '//public.peoplelife.co.kr/lib/swiper/swiper.js',
+        '//public.peoplelife.co.kr/js/modules.js',
+        'js/script_type2.js',
+    ]
 
+    for (var i=0; i<files.length; i++){
+        if (files[i].indexOf('.js') != -1){
+            var el = document.createElement('script');
+            el.async = false;
+            el.type = 'text/javascript';
+            el.src = files[i]+cache;
+
+            (document.getElementsByTagName('HEAD')[0]||document.body).appendChild(el);
+        } else if (files[i].indexOf('.css') != -1) {
+            var el = document.createElement('link');
+            el.rel = 'stylesheet';
+            el.type = 'text/css';
+            el.href = files[i]+cache;
+
+            (document.getElementsByTagName('HEAD')[0]||document.body).appendChild(el);
+        }
+    }                  
+</script>
 </head>
 <body>
 <!-- #wrap -->
