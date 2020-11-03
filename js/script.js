@@ -1,3 +1,10 @@
+var $mainWrap = $('#wrap');
+var $paging = $('#pagination');
+var $sign = $('#sign');
+var $spread = $('#spreadBG');
+
+
+
 $(function(){ // DOCUMENT READY...
 /*
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -5,7 +12,10 @@ $(function(){ // DOCUMENT READY...
 
 
 
-    $('img').on('dragstart', function(event) { event.preventDefault(); });
+    /* <img> 드래그 방지 */
+    $('img').on('dragstart', function(event) {
+        event.preventDefault();
+    });
 
 
 
@@ -15,6 +25,7 @@ $(function(){ // DOCUMENT READY...
 
 
 
+    /* 터치 이벤트 콜백 */
     let initialX = null,
     initialY = null;
 
@@ -67,36 +78,113 @@ $(function(){ // DOCUMENT READY...
         )
     });
 
+
+
 })();/*
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 */(function(){
 
 
 
-    var $mainWrap = $('#wrap');
-    var $paging = $('#pagination');
-    var $sign = $('#sign');
-    var $spread = $('#spreadBG');
+    // 터치 이벤트 실행
+    toRight = function() {
+        // 오른쪽 방향으로 드래그
+        if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
+            $sign.find('.btn_shop').click();
+        } else if ($mainWrap.hasClass('right')){
+            AlignCenter();
+        }
+    }
+
+    toLeft = function() {
+        // 왼쪽 방향으로 드레그
+        if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
+            $sign.find('.btn_fa').click();
+        } else if ($mainWrap.hasClass('left')){
+            AlignCenter();
+        }
+    }
+
+
+
+})();/*
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+*/(function(){
+
+
+
+    /* 휠 이벤트 */
+    $(window).bind('wheel', function(event){
+        if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
+            // scroll up
+            if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
+                $sign.find('.btn_shop').click();
+            } else if ($mainWrap.hasClass('right')){
+                AlignCenter();
+            }
+        }
+        else {
+            // scroll down
+            if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
+                $sign.find('.btn_fa').click();
+            } else if ($mainWrap.hasClass('left')){
+                AlignCenter();
+            }
+        }
+    });
+
+
+
+})();/*
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+*/(function(){
+
+
+
+    /* 키보드 방향키 이벤트 */
+    window.onkeydown = function(){
+        if(event.keyCode == 37){
+            console.log('좌');
+            //좌
+            if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
+                $sign.find('.btn_shop').click();
+            } else if ($mainWrap.hasClass('right')){
+                AlignCenter();
+            }
+        } else if (event.keyCode == 38){
+            //상
+        } else if (event.keyCode == 39){
+            console.log('우');
+            //우            
+            if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
+                $sign.find('.btn_fa').click();
+            } else if ($mainWrap.hasClass('left')){
+                AlignCenter();
+            }
+        } else if (event.keyCode == 40){
+            //하
+        }
+    };
+
+
+
+})();/*
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+*/(function(){
+
+
+
     var winW = window.outerWidth;
     var spreadW = $spread.width();
 
+    // start
+    $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
+    $paging.find('.page2 i').css('width','100%');
+
+    // start active
     setTimeout(function(){
         $mainWrap.addClass('center active');
-        $paging.find('.page2 i').css('width','100%');
     },50);
-
-
-    $paging.find('.page1').on('click', function() {
-        $sign.find('.btn_shop').click();
-    });
-
-    $paging.find('.page2').on('click', function() {
-        AlignCenter();
-    });
-
-    $paging.find('.page3').on('click', function() {
-        $sign.find('.btn_fa').click();
-    });
 
     // shop 화면이동
     $sign.find('.btn_shop').on('click', function() {
@@ -118,7 +206,7 @@ $(function(){ // DOCUMENT READY...
 
                 $spread.css('left',0);
                 $mainWrap.addClass('left').removeClass('right center');
-            }            
+            }
         } else if ( $mainWrap.hasClass('right') ){
             $paging.find('.page2 i').css({
                 'left' : 'auto',
@@ -196,43 +284,7 @@ $(function(){ // DOCUMENT READY...
         }
     });
 
-    $(window).bind('wheel', function(event){
-        if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-            // scroll up
-            if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
-                $sign.find('.btn_shop').click();
-            } else if ($mainWrap.hasClass('right')){
-                AlignCenter();
-            }
-        }
-        else {
-            // scroll down
-            if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
-                $sign.find('.btn_fa').click();
-            } else if ($mainWrap.hasClass('left')){
-                AlignCenter();
-            }
-        }
-    });
-
-    toRight = function() {
-        if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
-            $sign.find('.btn_shop').click();
-        } else if ($mainWrap.hasClass('right')){
-            AlignCenter();
-        }
-    }
-
-    toLeft = function() {
-        if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
-            $sign.find('.btn_fa').click();
-        } else if ($mainWrap.hasClass('left')){
-            AlignCenter();
-        }
-    }
-
-    $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
-
+    // 중앙(#sign)으로 이동
     AlignCenter = function(){
         if( !$mainWrap.hasClass('pointerNone') ){
             $mainWrap.addClass('pointerNone');
@@ -270,14 +322,35 @@ $(function(){ // DOCUMENT READY...
 
 
 
-
 })();/*
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 */(function(){
 
 
 
+    /* 페이징 */
+    $paging.find('.page1').on('click', function() {
+        $sign.find('.btn_shop').click();
+    });
 
+    $paging.find('.page2').on('click', function() {
+        AlignCenter();
+    });
+
+    $paging.find('.page3').on('click', function() {
+        $sign.find('.btn_fa').click();
+    });
+
+
+
+})();/*
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+*/(function(){
+
+
+    //var sf = new Snowflakes({
+    //    color: "#ffffff"
+    //});
 
 
 

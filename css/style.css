@@ -13,10 +13,10 @@
 ****************************************************************************/
 /* Frame */
 html,body {overflow:hidden;background-color:#000}
-#wrap {visibility:visible;overflow:hidden;position:fixed;left:50%;top:50%;width:1920px;height:920px;font-size:3.6vw;letter-spacing:-0.03em;opacity:1;cursor:url('/img/type_a/cursor_center.png') 65 50, auto;transform:translate(-50%, -50%)}
+#wrap {overflow:hidden;position:fixed;left:50%;top:50%;width:1920px;height:0;font-size:3.6vw;letter-spacing:-0.03em;opacity:0;cursor:url('/img/type_a/cursor_center.png') 65 50, auto;transform:translate(-50%, -50%)}
 #wrap.left {cursor:url('/img/type_a/cursor_right.png') 65 50, auto}
 #wrap.right {cursor:url('/img/type_a/cursor_left.png') 65 50, auto}
-#wrap.pointerNone {}
+#wrap.active {visibility:visible;height:920px;opacity:1}
 
 
 /****************************************************************************
@@ -32,11 +32,11 @@ html,body {overflow:hidden;background-color:#000}
 
 #sign {position:relative;z-index:1;text-align:center;height:100%}
 #sign .inner {display:inline-block;position:relative;height:100%}
-#sign .board {position:absolute;top:-130px;left:50%;transform:translateX(-50%)}
+#sign .board {position:absolute;top:-130px;left:50%;z-index:1;transform:translateX(-50%);perspective:350px}
 #sign .board .tit {position:absolute;top:32px;left:68px;font-family:'HGGGothicssi',sans-serif;font-size:40px;font-weight:800;color:#fff}
 #sign .board img {width:auto;height:170px}
-#sign .btn_shop {position:absolute;top:22.78%;left:-38px;height:9.2%;transform-origin:center right}
-#sign .btn_fa {display:flex;justify-content:flex-end;position:absolute;top:30.78%;right:-45px;height:9.2%;transform-origin:center left}
+#sign .btn_shop {position:absolute;top:-95px;left:-38px;height:9.2%;transform-origin:center right}
+#sign .btn_fa {display:flex;justify-content:flex-end;position:absolute;top:-95px;right:-45px;height:9.2%;transform-origin:center left}
 #sign .btn_shop img,
 #sign .btn_fa img {display:block;width:408px}
 #sign .bg {display:block;width:auto;height:100%}
@@ -44,19 +44,23 @@ html,body {overflow:hidden;background-color:#000}
 #wrap.left #sign {transform:translateX(100%);transition:all 3s ease-in-out}
 #wrap.right #sign {transform:translateX(-100%);transition:all 3s ease-in-out}
 #wrap.active #sign .board {top:40px;transition:all 0.8s 0.5s ease-out}
-#wrap.active #sign .btn_shop {animation:signBtnLoop 4s 1.5s infinite}
-#wrap.active #sign .btn_fa {animation:signBtnLoop 4s 3.5s infinite}
+#wrap.active #sign .board .tit {transform:rotateX(720deg);transition:all 1s 1s ease-out}
+#wrap.active #sign .btn_shop {top:22.78%;transition:all 1s 1.5s ease-out}
+#wrap.active #sign .btn_fa {top:30.78%;transition:all 1s 1.7s ease-out}
+#wrap.active #sign .btn_shop:hover,
+#wrap.active #sign .btn_fa:hover {animation:signBtnLoop 1s forwards linear}
+
 @keyframes signBtnLoop {
-    13%                   {transform:perspective(3000px) rotateY(-30deg);filter:brightness(1.2)}
-    18%                   {transform:perspective(3000px) rotateY(40deg);filter:brightness(0.6)}
-    24%                   {transform:perspective(3000px) rotateY(-15deg);filter:brightness(1)}
-    28%                   {transform:perspective(3000px) rotateY(10deg);filter:brightness(0.8)}
-    32%                   {transform:perspective(3000px) rotateY(-7deg);filter:brightness(1)}
-    34%                   {transform:perspective(3000px) rotateY(5deg);filter:brightness(0.85)}
-    36%                   {transform:perspective(3000px) rotateY(-3deg);filter:brightness(1)}
-    38%                   {transform:perspective(3000px) rotateY(2deg);filter:brightness(0.95)}
-    40%                   {transform:perspective(3000px) rotateY(-2deg);filter:brightness(1)}
-    42%,100%              {transform:perspective(3000px) rotateY(0);filter:brightness(0.95)}
+    15%                   {transform:perspective(3000px) rotateY(-10deg);filter:brightness(1.2)}
+    30%                   {transform:perspective(3000px) rotateY(10deg);filter:brightness(0.6)}
+    45%                   {transform:perspective(3000px) rotateY(-8deg);filter:brightness(1)}
+    55%                   {transform:perspective(3000px) rotateY(8deg);filter:brightness(0.8)}
+    65%                   {transform:perspective(3000px) rotateY(-6deg);filter:brightness(1)}
+    75%                   {transform:perspective(3000px) rotateY(5deg);filter:brightness(0.85)}
+    85%                   {transform:perspective(3000px) rotateY(-3deg);filter:brightness(1)}
+    90%                   {transform:perspective(3000px) rotateY(2deg);filter:brightness(0.95)}
+    95%                   {transform:perspective(3000px) rotateY(-2deg);filter:brightness(1)}
+    100%                  {transform:perspective(3000px) rotateY(0);filter:brightness(0.95)}
 }
 
 #shop {position:absolute;left:18%;bottom:0;z-index:1;height:61.94%;width:50%}
@@ -86,13 +90,13 @@ html,body {overflow:hidden;background-color:#000}
 #fa .txt_area p {text-align:left;opacity:0;transform:translateX(-10%)}
 #fa .txt_area p:nth-child(2) {font-family:'HGGGothicssi';font-size:80px;font-weight:900;color:#fdc314}
 #fa .txt_area p img {margin:0;width:80%}
-#fa .link_fa {position:absolute;top:-13%;left:35%;opacity:0;transform:scale(1.1) translateX(-20%)}
+#fa .link_fa {position:absolute;top:-13%;left:35%;opacity:0;transform:translateX(-20%)}
 #fa .link_fa img {display:block;width:auto;height:25.83%}
 #wrap.right #fa {pointer-events:all}
 #wrap.right #fa .txt_area p {opacity:1;transform:translateX(0);transition:all 0.5s 2s ease-in-out}
 #wrap.right #fa .txt_area p:nth-child(2) {transition-delay:2.2s;animation:textFaLoop 1s 2.2s alternate infinite ease-in-out}
 #wrap.right #fa .txt_area p:nth-child(3) {transition-delay:2.4s}
-#wrap.right #fa .link_fa {opacity:1;transform:scale(1) translateX(0%);transition:all 0.5s 2.7s ease-in-out;animation:linkFa 1s 3.2s infinite alternate ease-in-out}
+#wrap.right #fa .link_fa {opacity:1;transform:translateX(0%);transition:all 0.5s 2.7s ease-in-out;animation:linkFa 1s 3.2s infinite alternate ease-in-out}
 @keyframes linkFa {
     0%       {transform:translateX(0%)}
     100%     {transform:translateX(-20%)}
