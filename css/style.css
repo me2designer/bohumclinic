@@ -16,7 +16,7 @@ html,body {overflow:hidden;background-color:#000}
 #wrap {overflow:hidden;position:fixed;left:50%;top:50%;width:1920px;height:0;font-size:3.6vw;letter-spacing:-0.03em;opacity:0;cursor:url('/img/type_a/cursor_center.png') 65 50, auto;transform:translate(-50%, -50%)}
 #wrap.left {cursor:url('/img/type_a/cursor_right.png') 65 50, auto}
 #wrap.right {cursor:url('/img/type_a/cursor_left.png') 65 50, auto}
-#wrap.active {visibility:visible;height:920px;opacity:1}
+#wrap.active {visibility:visible;height:100%;min-height:920px;max-height:1080px;opacity:1}
 
 
 /****************************************************************************
@@ -31,20 +31,18 @@ html,body {overflow:hidden;background-color:#000}
 
 
 #sign {position:relative;z-index:1;text-align:center;height:100%}
-#sign .inner {display:inline-block;position:relative;height:100%}
-#sign .board {position:absolute;top:-130px;left:50%;z-index:1;transform:translateX(-50%);perspective:350px}
+#sign .inner {display:inline-block;position:relative;height:100%;width:850px;background:url('/img/type_a/visual_sign.png') center bottom no-repeat;background-size:95%}
+#sign .board {position:absolute;top:-130px;left:50%;z-index:1;transform:translateX(-50%)}
 #sign .board .tit {position:absolute;top:32px;left:68px;font-family:'HGGGothicssi',sans-serif;font-size:40px;font-weight:800;color:#fff}
 #sign .board img {width:auto;height:170px}
-#sign .btn_shop {position:absolute;top:-95px;left:-38px;height:9.2%;transform-origin:center right}
-#sign .btn_fa {display:flex;justify-content:flex-end;position:absolute;top:-95px;right:-45px;height:9.2%;transform-origin:center left}
+#sign .btn_shop {position:absolute;top:-95px;left:-2px;height:9.2%;transform-origin:center right}
+#sign .btn_fa {display:flex;justify-content:flex-end;position:absolute;top:-95px;right:-11px;height:9.2%;transform-origin:center left}
 #sign .btn_shop img,
 #sign .btn_fa img {display:block;width:408px}
-#sign .bg {display:block;width:auto;height:100%}
 #wrap.center #sign {transition:all 2s ease-in-out}
 #wrap.left #sign {transform:translateX(100%);transition:all 3s ease-in-out}
 #wrap.right #sign {transform:translateX(-100%);transition:all 3s ease-in-out}
 #wrap.active #sign .board {top:40px;transition:all 0.8s 0.5s ease-out}
-#wrap.active #sign .board .tit {transform:rotateX(720deg);transition:all 1s 1s ease-out}
 #wrap.active #sign .btn_shop {top:22.78%;transition:all 1s 1.5s ease-out}
 #wrap.active #sign .btn_fa {top:30.78%;transition:all 1s 1.7s ease-out}
 #wrap.active #sign .btn_shop:hover,
@@ -107,7 +105,7 @@ html,body {overflow:hidden;background-color:#000}
 
 #spreadBG {position:absolute;top:0;left:0;height:100%}
 #spreadBG img {display:block;width:auto;max-width:none;height:100%}
-#wrap.center #spreadBG {transition:all 2s ease-in-out}
+#wrap.active.center #spreadBG {filter:blur(3px)}
 #wrap.left #spreadBG,
 #wrap.right #spreadBG {transition:all 3s ease-in-out}
 

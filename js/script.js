@@ -25,19 +25,47 @@ $(function(){ // DOCUMENT READY...
 
 
 
+    /* start */
+    $mainWrap.addClass('center active');
+
+
+
+})();/*
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+*/(function(){
+
+
+    /* resize 새로고침 */
+    // window.addEventListener('resize', function() {
+    //     location.reload();
+    //     console.log('a');
+    // }, true);
+
+    // resize();
+
+
+
+})();/*
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+*/(function(){
+
+
+
+
+
     /* 터치 이벤트 콜백 */
     let initialX = null,
     initialY = null;
 
     function initTouch(e) {
-        initialX = `${e.touches ? e.touches[0].clientX : e.clientX}`;
-        initialY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+        initialX = e.touches ? e.touches[0].clientX : e.clientX;
+        initialY = e.touches ? e.touches[0].clientY : e.clientY;
     };
 
     function swipeDirection(e) {
         if (initialX !== null && initialY !== null) {
-        const currentX = `${e.touches ? e.touches[0].clientX : e.clientX}`,
-            currentY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+        const currentX = e.touches ? e.touches[0].clientX : e.clientX,
+            currentY = e.touches ? e.touches[0].clientY : e.clientY;
 
         let diffX = initialX - currentX,
             diffY = initialY - currentY;
@@ -62,16 +90,16 @@ $(function(){ // DOCUMENT READY...
 
     window.addEventListener("touchstart", initTouch);
     window.addEventListener("touchmove", swipeDirection);
-    window.addEventListener("mousedown", (e) => {
+    window.addEventListener("mousedown", function(e) {
         initTouch(e),
         window.addEventListener("mousemove", swipeDirection)
     });
-    window.addEventListener("mouseup", () => {
+    window.addEventListener("mouseup", function() {
         window.removeEventListener("mousemove", swipeDirection);
     });
 
     // 실행
-    window.addEventListener("mousedown", (e) => {
+    window.addEventListener("mousedown", function(e){
         0 === e.button && (
         initTouch(e),
         window.addEventListener("mousemove", swipeDirection)
@@ -155,7 +183,7 @@ $(function(){ // DOCUMENT READY...
             //상
         } else if (event.keyCode == 39){
             console.log('우');
-            //우            
+            //우
             if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
                 $sign.find('.btn_fa').click();
             } else if ($mainWrap.hasClass('left')){
@@ -172,19 +200,21 @@ $(function(){ // DOCUMENT READY...
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 */(function(){
 
+  
 
+    var winW = $mainWrap.width();
 
-    var winW = window.outerWidth;
-    var spreadW = $spread.width();
+    var spread = function() {        
+        var width = $spread.width();
+        var center = Math.abs((width / 2 - winW / 2)) * -1;
+        var right = ($spread.width() - winW) * -1;
+
+        return {center : center, right : right}
+    }
 
     // start
-    $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
+    $spread.css('left' , spread().center);
     $paging.find('.page2 i').css('width','100%');
-
-    // start active
-    setTimeout(function(){
-        $mainWrap.addClass('center active');
-    },50);
 
     // shop 화면이동
     $sign.find('.btn_shop').on('click', function() {
@@ -204,7 +234,10 @@ $(function(){ // DOCUMENT READY...
                     $mainWrap.removeClass('pointerNone');
                 });
 
-                $spread.css('left',0);
+                $spread.css({
+                    'left' : 0,
+                    'transition' : ''
+                });
                 $mainWrap.addClass('left').removeClass('right center');
             }
         } else if ( $mainWrap.hasClass('right') ){
@@ -230,7 +263,10 @@ $(function(){ // DOCUMENT READY...
                 });
             });
 
-            $spread.css('left',0);
+            $spread.css({
+                'left' : 0,
+                'transition' : ''
+            });
             $mainWrap.addClass('left').removeClass('right center');
         }
     });
@@ -252,8 +288,11 @@ $(function(){ // DOCUMENT READY...
                 }).animate({ 'width' : '100%' }, 1600, function(){
                     $mainWrap.removeClass('pointerNone');
                 });
-
-                $spread.css('left','-2560px');
+                
+                $spread.css({
+                    'left' : spread().right,
+                    'transition' : ''
+                });
                 $mainWrap.addClass('right').removeClass('left center');
             } else if ( $mainWrap.hasClass('left') ){
                 $paging.find('.page1 i').css({
@@ -278,7 +317,10 @@ $(function(){ // DOCUMENT READY...
                     });
                 });
 
-                $spread.css('left','-2560px');
+                $spread.css({
+                    'left' : spread().right,
+                    'transition' : ''
+                });
                 $mainWrap.addClass('right').removeClass('left center');
             }
         }
@@ -315,10 +357,23 @@ $(function(){ // DOCUMENT READY...
                 });
             }
 
-            $spread.css('left',Math.abs((spreadW / 2 - winW / 2)) * -1);
+            $spread.css({
+                'left' : spread().center,
+                'transition' : 'all 2s ease-in-out'
+            });
             $mainWrap.addClass('center').removeClass('left right');
         }
     }
+    
+    // resize 적용시
+    $(window).on('resize', function(){
+        if ( $mainWrap.hasClass('right') ){            
+            $spread.css({
+                'left' : spread().right,
+                'transition' : 'all 0s'
+            });
+        }
+    });
 
 
 
