@@ -12,16 +12,25 @@
     layout
 ****************************************************************************/
 /* Frame */
-html,body {overflow:hidden;background-color:#000}
-#wrap {overflow:hidden;position:fixed;left:50%;top:50%;width:1920px;height:0;font-size:3.6vw;letter-spacing:-0.03em;opacity:0;cursor:url('/img/type_a/cursor_center.png') 65 50, auto;transform:translate(-50%, -50%)}
-#wrap.left {cursor:url('/img/type_a/cursor_right.png') 65 50, auto}
-#wrap.right {cursor:url('/img/type_a/cursor_left.png') 65 50, auto}
+html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png') 0 0}
+#wrap {overflow:hidden;position:fixed;left:50%;top:50%;width:1920px;height:0;font-family:'NotoSansKR',sans-serif;font-size:3.6vw;letter-spacing:-0.03em;opacity:0;transform:translate(-50%, -50%)}
+/* #wrap.left {cursor:url('/img/type_a/cursor_right.png') 65 50, auto}
+#wrap.right {cursor:url('/img/type_a/cursor_left.png') 65 50, auto} */
 #wrap.active {visibility:visible;height:100%;min-height:920px;max-height:1080px;opacity:1}
 
 
 /****************************************************************************
 	content area
 ****************************************************************************/
+#cursor  {position:absolute;z-index:10;width:128px;height:94px;background:url('/img/type_a/cursor_sign.png') 0 0 no-repeat;animation:cursorSign 0.5s infinite alternate ease-in-out;}
+#cursor:after {content:'보험클리닉 찾기';display:block;position:absolute;bottom:-30px;width:100%;font-size:18px;font-weight:400;color:#fff;text-align:center;text-shadow:1px 1px 2px #000}
+@keyframes cursorSign {        
+    0%, 24.99%          {background-position-y:0}
+    25%, 49.99%         {background-position-y:-94px}
+    50%, 74.99%         {background-position-y:-188px}
+    75%, 100%           {margin-top:5px;background-position-y:-282px}
+}
+
 #pagination {position:fixed;bottom:0;left:50%;z-index:10;transform:translateX(-50%)}
 .scroll-to-explore { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); color: white; font-size: 13px; font-weight: 600; text-align: center;letter-spacing:0;}
 .scroll-to-explore span { display: inline-block; width: 30px; height: 30px; margin-bottom: 5px; background: transparent url('/img/type_a/mouse.svg') center center no-repeat; background-size: contain; }
@@ -103,9 +112,13 @@ html,body {overflow:hidden;background-color:#000}
     100%        {text-shadow:0 0 50px #fd7414}
 }
 
+/* 배경 */
 #spreadBG {position:absolute;top:0;left:0;height:100%}
 #spreadBG img {display:block;width:auto;max-width:none;height:100%}
 #wrap.active.center #spreadBG {filter:blur(3px)}
 #wrap.left #spreadBG,
 #wrap.right #spreadBG {transition:all 3s ease-in-out}
 
+@media screen and (min-height : 900px) {
+    #spreadBG {transform:scale(1.1)}
+}

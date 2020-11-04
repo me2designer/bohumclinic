@@ -142,23 +142,28 @@ $(function(){ // DOCUMENT READY...
 
 
     /* 휠 이벤트 */
-    $(window).bind('wheel', function(event){
-        if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-            // scroll up
-            if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
-                $sign.find('.btn_shop').click();
-            } else if ($mainWrap.hasClass('right')){
-                AlignCenter();
-            }
-        }
-        else {
-            // scroll down
+    $(document).on( 'DOMMouseScroll wheel', function ( event ) {
+        if(event.originalEvent.deltaY > 0) {
+            //wheel down
+            console.log("wheel down");
             if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
                 $sign.find('.btn_fa').click();
             } else if ($mainWrap.hasClass('left')){
                 AlignCenter();
             }
+            return false;
         }
+        if(event.originalEvent.deltaY < 0) {
+            //wheel up
+            console.log("wheel up");
+            if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
+                $sign.find('.btn_shop').click();
+            } else if ($mainWrap.hasClass('right')){
+                AlignCenter();
+            }
+            return false;
+        }
+        return false;
     });
 
 
@@ -200,11 +205,11 @@ $(function(){ // DOCUMENT READY...
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 */(function(){
 
-  
+
 
     var winW = $mainWrap.width();
 
-    var spread = function() {        
+    var spread = function() {
         var width = $spread.width();
         var center = Math.abs((width / 2 - winW / 2)) * -1;
         var right = ($spread.width() - winW) * -1;
@@ -288,7 +293,7 @@ $(function(){ // DOCUMENT READY...
                 }).animate({ 'width' : '100%' }, 1600, function(){
                     $mainWrap.removeClass('pointerNone');
                 });
-                
+
                 $spread.css({
                     'left' : spread().right,
                     'transition' : ''
@@ -364,10 +369,10 @@ $(function(){ // DOCUMENT READY...
             $mainWrap.addClass('center').removeClass('left right');
         }
     }
-    
+
     // resize 적용시
     $(window).on('resize', function(){
-        if ( $mainWrap.hasClass('right') ){            
+        if ( $mainWrap.hasClass('right') ){
             $spread.css({
                 'left' : spread().right,
                 'transition' : 'all 0s'
@@ -402,10 +407,50 @@ $(function(){ // DOCUMENT READY...
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 */(function(){
 
+    var $cursor = $mainWrap.find('#cursor');
+    var wrapW = $mainWrap.width();
+    var wrapL = wrapW / 3;
+    var wrapR = wrapW - wrapL;
 
-    //var sf = new Snowflakes({
-    //    color: "#ffffff"
-    //});
+    function getPosition(e) {
+        var x = e.clientX - $mainWrap.offset().left;
+        var y = e.clientY - $mainWrap.offset().top;
+        return { x : x , y : y }
+    }
+
+    $mainWrap.mousemove(function(e){
+        posX = getPosition(e).x;
+        posY = getPosition(e).y;
+
+        $cursor.css({
+            'left' : posX,
+            'top' : posY
+        });
+        
+        if($mainWrap.hasClass('center')){
+            focusSign();
+            //console.log(getPosition(e).x);
+        } else if ($mainWrap.hasClass('left')){
+            //focusLeft();
+        } else if ($mainWrap.hasClass('right')){
+            //focusRight();
+        }        
+    });    
+
+    function focusSign(e){        
+        if(posX < wrapL){            
+            
+        } else if (posX > wrapR){
+            
+        } else {
+            
+        }
+    }
+
+
+
+
+
 
 
 
@@ -414,3 +459,4 @@ $(function(){ // DOCUMENT READY...
 })();/*
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 */});// DOCUMENT READY...
+
