@@ -14,23 +14,54 @@
 /* Frame */
 html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png') 0 0}
 #wrap {overflow:hidden;position:fixed;left:50%;top:50%;width:1920px;height:0;font-family:'NotoSansKR',sans-serif;font-size:3.6vw;letter-spacing:-0.03em;opacity:0;transform:translate(-50%, -50%)}
-/* #wrap.left {cursor:url('/img/type_a/cursor_right.png') 65 50, auto}
-#wrap.right {cursor:url('/img/type_a/cursor_left.png') 65 50, auto} */
 #wrap.active {visibility:visible;height:100%;min-height:920px;max-height:1080px;opacity:1}
 
 
 /****************************************************************************
 	content area
 ****************************************************************************/
-#cursor  {position:absolute;z-index:10;width:128px;height:94px;background:url('/img/type_a/cursor_sign.png') 0 0 no-repeat;animation:cursorSign 0.5s infinite alternate ease-in-out;}
-#cursor:after {content:'보험클리닉 찾기';display:block;position:absolute;bottom:-30px;width:100%;font-size:18px;font-weight:400;color:#fff;text-align:center;text-shadow:1px 1px 2px #000}
-@keyframes cursorSign {        
+/* 사이드 네비게이션 */
+#sidenav {position:absolute;z-index:1;width:100%;height:100%}
+#sidenav .shadow {position:absolute;top:0;width:0;height:100%}
+#sidenav .shadow.shop {left:0;background:linear-gradient(to right, rgba(0,0,0,.8), rgba(0,0,0,.3) 60%, transparent)}
+#sidenav .shadow.fa {right:0;background:linear-gradient(to left, rgba(0,0,0,.8), rgba(0,0,0,.3) 60%, transparent)}
+#sidenav .shadow span {display:block;position:absolute;top:50%;font-size:30px;color:#fff;white-space:nowrap;text-shadow:2px 2px 8px #000;opacity:0}
+#sidenav .shadow.shop span {left:0}
+#sidenav .shadow.fa span {right:0}
+#sidenav .shadow.shop span::before {content:"";display:inline-block;width:0.8em;height:0.8em;margin:0.2em 0 0 0.2em;border-width:0.1em 0 0 0.1em;border-color:#fff;transform:rotate(-45deg)}
+#sidenav .shadow.fa span::after {content:"";display:inline-block;width:0.8em;height:0.8em;margin:0.2em 0 0 0.2em;border-width:0.1em 0 0 0.1em;border-color:#fff;transform:rotate(135deg)}
+#wrap.pointerNone #sidenav {z-index:-1}
+#wrap.active #sidenav .shadow {transition:all 1s}
+#wrap.active #sidenav .shadow span {transition:all 0.3s}
+#wrap.center[cursor-focus="shop"] #sidenav .shop {width:400px;transition:all 0.6s}
+#wrap.center[cursor-focus="shop"] #sidenav .shop span {left:30px;opacity:1;transition:all 0.6s}
+#wrap.center[cursor-focus="fa"] #sidenav .fa {width:400px;transition:all 0.6s}
+#wrap.center[cursor-focus="fa"] #sidenav .fa span {right:30px;opacity:1;transition:all 0.6s}
+#wrap.left[cursor-focus="fa"] #sidenav .fa {width:400px;transition:all 0.6s}
+#wrap.left[cursor-focus="fa"] #sidenav .fa span {right:30px;opacity:1;transition:all 0.6s}
+#wrap.right[cursor-focus="shop"] #sidenav .shop {width:400px;transition:all 0.6s}
+#wrap.right[cursor-focus="shop"] #sidenav .shop span {left:30px;opacity:1;transition:all 0.6s}
+
+/* 커서 형태 변경 */
+#cursor  {position:absolute;z-index:10;width:128px;height:94px;margin:5px 0 0 5px;background: 0 0 no-repeat;transition:opacity 0.3s;animation:cursorBG 0.8s infinite alternate ease-in-out, cursorUpdown 1.2s infinite alternate ease-in-out}
+#cursor.hide {opacity:0}
+#wrap.center[cursor-focus="sign"] #cursor {background-image:url('/img/type_a/cursor_center.png')}
+#wrap.center[cursor-focus="shop"] #cursor {background-image:url('/img/type_a/cursor_left.png')}
+#wrap.center[cursor-focus="fa"] #cursor {background-image:url('/img/type_a/cursor_right.png')}
+#wrap.left[cursor-focus="fa"] #cursor {background-image:url('/img/type_a/cursor_right.png')}
+#wrap.right[cursor-focus="shop"] #cursor {background-image:url('/img/type_a/cursor_left.png')}
+@keyframes cursorBG {        
     0%, 24.99%          {background-position-y:0}
     25%, 49.99%         {background-position-y:-94px}
     50%, 74.99%         {background-position-y:-188px}
-    75%, 100%           {margin-top:5px;background-position-y:-282px}
+    75%, 100%           {background-position-y:-282px}
+}
+@keyframes cursorUpdown {        
+    50%                 {margin-top:15px}
+    100%               {margin-top:5px}
 }
 
+/* 페이징 */
 #pagination {position:fixed;bottom:0;left:50%;z-index:10;transform:translateX(-50%)}
 .scroll-to-explore { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); color: white; font-size: 13px; font-weight: 600; text-align: center;letter-spacing:0;}
 .scroll-to-explore span { display: inline-block; width: 30px; height: 30px; margin-bottom: 5px; background: transparent url('/img/type_a/mouse.svg') center center no-repeat; background-size: contain; }
@@ -38,7 +69,7 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 #pagination .page:after {content:'';position:absolute;top:50%;left:0;width:100%;height:1px;background-color:rgba(255, 255, 255, 0.5);}
 #pagination .page i {position:absolute;top:50%;width:0;height:6px;background-color:#fff;transform:translateY(-50%)}
 
-
+/* 표지판 */
 #sign {position:relative;z-index:1;text-align:center;height:100%}
 #sign .inner {display:inline-block;position:relative;height:100%;width:850px;background:url('/img/type_a/visual_sign.png') center bottom no-repeat;background-size:95%}
 #sign .board {position:absolute;top:-130px;left:50%;z-index:1;transform:translateX(-50%)}
@@ -55,8 +86,7 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 #wrap.active #sign .btn_shop {top:22.78%;transition:all 1s 1.5s ease-out}
 #wrap.active #sign .btn_fa {top:30.78%;transition:all 1s 1.7s ease-out}
 #wrap.active #sign .btn_shop:hover,
-#wrap.active #sign .btn_fa:hover {animation:signBtnLoop 1s forwards linear}
-
+#wrap.active #sign .btn_fa:hover {animation:signBtnLoop 1s linear}
 @keyframes signBtnLoop {
     15%                   {transform:perspective(3000px) rotateY(-10deg);filter:brightness(1.2)}
     30%                   {transform:perspective(3000px) rotateY(10deg);filter:brightness(0.6)}
@@ -70,6 +100,7 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
     100%                  {transform:perspective(3000px) rotateY(0);filter:brightness(0.95)}
 }
 
+/* SHOP */
 #shop {position:absolute;left:18%;bottom:0;z-index:1;height:61.94%;width:50%}
 #shop .txt_area {position:absolute;left:22%;top:-10%;}
 #shop .txt_area p {font-family:'HGGGothicssi';font-size:55px;font-weight:800;color:#fff;line-height:1.2em;white-space:nowrap;text-indent:10%;text-shadow:2px 2px 5px rgba(0, 0, 0, 0.5);opacity:0}
@@ -84,6 +115,7 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 #wrap.left #shop .link_shop {opacity:1;transform:scale(1) translateY(0%);transition:all 0.5s 2.6s ease-in-out;animation:linkShop 1s 2.2s infinite alternate ease-in-out}
 #wrap.left #shop .model {opacity:1;transform:translateX(0);transition:opacity 0.5s 2s ease-in-out;}
 #wrap.active .model {transition:transform 1.5s ease-in-out, opacity 0.5s ease-in-out}
+#wrap.pointerNone #shop .link_shop {pointer-events:none}
 @keyframes linkShop {
     0%       {transform:scale(1) translateY(0)}
     100%     {transform:scale(1.1) translateY(20%)}
@@ -92,12 +124,13 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
     100%        {text-shadow:0 0 50px #1300f9}
 }
 
+/* FA 화면 */
 #fa {position:absolute;left:18%;bottom:0;z-index:1;height:61.94%;width:50%;pointer-events:none}
-#fa .txt_area {position:absolute;left:2vw;top:-46%}
+#fa .txt_area {position:absolute;left:110px;top:-46%}
 #fa .txt_area p {text-align:left;opacity:0;transform:translateX(-10%)}
 #fa .txt_area p:nth-child(2) {font-family:'HGGGothicssi';font-size:80px;font-weight:900;color:#fdc314}
 #fa .txt_area p img {margin:0;width:80%}
-#fa .link_fa {position:absolute;top:-13%;left:35%;opacity:0;transform:translateX(-20%)}
+#fa .link_fa {position:absolute;top:-13%;left:46%;opacity:0;transform:translateX(-20%)}
 #fa .link_fa img {display:block;width:auto;height:25.83%}
 #wrap.right #fa {pointer-events:all}
 #wrap.right #fa .txt_area p {opacity:1;transform:translateX(0);transition:all 0.5s 2s ease-in-out}
@@ -115,10 +148,9 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 /* 배경 */
 #spreadBG {position:absolute;top:0;left:0;height:100%}
 #spreadBG img {display:block;width:auto;max-width:none;height:100%}
-#wrap.active.center #spreadBG {filter:blur(3px)}
+/* #wrap.active.center #spreadBG {filter:blur(3px)} */
 #wrap.left #spreadBG,
 #wrap.right #spreadBG {transition:all 3s ease-in-out}
-
 @media screen and (min-height : 900px) {
     #spreadBG {transform:scale(1.1)}
 }

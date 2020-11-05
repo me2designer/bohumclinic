@@ -4,7 +4,6 @@ var $sign = $('#sign');
 var $spread = $('#spreadBG');
 
 
-
 $(function(){ // DOCUMENT READY...
 /*
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -223,10 +222,11 @@ $(function(){ // DOCUMENT READY...
 
     // shop 화면이동
     $sign.find('.btn_shop').on('click', function() {
-        if( !$mainWrap.hasClass('pointerNone') ){
-            $mainWrap.addClass('pointerNone');
+        if( !$mainWrap.hasClass('pointerNone') ){            
+            $mainWrap.addClass('pointerNone').css('cursor','');
 
             if( $mainWrap.hasClass('center') ){
+                console.log('shop move1');
                 $paging.find('.page2 i').css({
                     'left' : 0,
                     'right' : 'auto'
@@ -245,7 +245,9 @@ $(function(){ // DOCUMENT READY...
                 });
                 $mainWrap.addClass('left').removeClass('right center');
             }
-        } else if ( $mainWrap.hasClass('right') ){
+        } 
+        
+        if ( $mainWrap.hasClass('right') ){
             $paging.find('.page2 i').css({
                 'left' : 'auto',
                 'right' : 0
@@ -279,7 +281,7 @@ $(function(){ // DOCUMENT READY...
     // FA 화면이동
     $sign.find('.btn_fa').on('click', function () {
         if( !$mainWrap.hasClass('pointerNone') ){
-            $mainWrap.addClass('pointerNone');
+            $mainWrap.addClass('pointerNone').css('cursor','');
 
             if( $mainWrap.hasClass('center') ){
                 $paging.find('.page2 i').css({
@@ -299,7 +301,9 @@ $(function(){ // DOCUMENT READY...
                     'transition' : ''
                 });
                 $mainWrap.addClass('right').removeClass('left center');
-            } else if ( $mainWrap.hasClass('left') ){
+            } 
+            
+            if ( $mainWrap.hasClass('left') ){
                 $paging.find('.page1 i').css({
                     'left' : 'auto',
                     'right' : 0
@@ -334,7 +338,7 @@ $(function(){ // DOCUMENT READY...
     // 중앙(#sign)으로 이동
     AlignCenter = function(){
         if( !$mainWrap.hasClass('pointerNone') ){
-            $mainWrap.addClass('pointerNone');
+            $mainWrap.addClass('pointerNone').css('cursor','');
 
             if($mainWrap.hasClass('left')){
                 $paging.find('.page2 i').css({
@@ -348,7 +352,9 @@ $(function(){ // DOCUMENT READY...
                 }).animate({ 'width' : 0 }, 800, function(){
                     $mainWrap.removeClass('pointerNone');
                 });
-            } else if ($mainWrap.hasClass('right')){
+            } 
+            
+            if ($mainWrap.hasClass('right')){
                 $paging.find('.page2 i').css({
                     'left' : 'auto',
                     'right' : 0
@@ -407,9 +413,12 @@ $(function(){ // DOCUMENT READY...
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 */(function(){
 
+
+
+    /* 커서 모양 변경 */ 
     var $cursor = $mainWrap.find('#cursor');
     var wrapW = $mainWrap.width();
-    var wrapL = wrapW / 3;
+    var wrapL = wrapW / 5;
     var wrapR = wrapW - wrapL;
 
     function getPosition(e) {
@@ -426,34 +435,74 @@ $(function(){ // DOCUMENT READY...
             'left' : posX,
             'top' : posY
         });
-        
-        if($mainWrap.hasClass('center')){
-            focusSign();
-            //console.log(getPosition(e).x);
-        } else if ($mainWrap.hasClass('left')){
-            //focusLeft();
-        } else if ($mainWrap.hasClass('right')){
-            //focusRight();
-        }        
-    });    
 
-    function focusSign(e){        
-        if(posX < wrapL){            
-            
-        } else if (posX > wrapR){
-            
-        } else {
-            
+        if( $mainWrap.hasClass('center') && !$mainWrap.hasClass('pointerNone') ){
+            if (posX < wrapL){
+                $mainWrap.attr('cursor-focus','shop').css('cursor','pointer');
+            } else if (posX > wrapR){
+                $mainWrap.attr('cursor-focus','fa').css('cursor','pointer');
+            } else {
+                $mainWrap.attr('cursor-focus','sign').css('cursor','');
+            }
+        } else if ( $mainWrap.hasClass('left') && !$mainWrap.hasClass('pointerNone') ){
+            if (posX > wrapR){
+                $mainWrap.attr('cursor-focus','fa').css('cursor','pointer');
+            } else {
+                $mainWrap.attr('cursor-focus','').css('cursor','');
+            }
+        } else if ( $mainWrap.hasClass('right') && !$mainWrap.hasClass('pointerNone') ){
+            if (posX < wrapL){
+                $mainWrap.attr('cursor-focus','shop').css('cursor','pointer');
+            } else {
+                $mainWrap.attr('cursor-focus','').css('cursor','');
+            }
         }
-    }
+
+    });
 
 
 
+})();/*
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+*/(function(){
 
 
 
+    /* 배경 클릭시 화면 전환  */
+    $mainWrap.on('click', function() {
+        if ( $mainWrap.hasClass('center') && !$mainWrap.hasClass('pointerNone') ){
+            if ($mainWrap.attr('cursor-focus') == 'fa'){
+                $sign.find('.btn_fa').click();
+            } else if ($mainWrap.attr('cursor-focus') == 'shop'){
+                $sign.find('.btn_shop').click();
+            }
+        } else if ($mainWrap.hasClass('left') && !$mainWrap.hasClass('pointerNone')){
+            if ($mainWrap.attr('cursor-focus') == 'fa'){
+                $sign.find('.btn_fa').click();
+            }
+        } else if ($mainWrap.hasClass('right') && !$mainWrap.hasClass('pointerNone')){
+            if ($mainWrap.attr('cursor-focus') == 'shop'){
+                $sign.find('.btn_shop').click();
+            }
+        }
+    });
 
 
+
+})();/*
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+*/(function(){
+
+
+
+    /* 커서 animate 숨기기 */ 
+    var $cursor = $mainWrap.find('#cursor');
+
+    $mainWrap.find('.cursorHide').mouseover(function() {
+        $cursor.addClass('hide');
+    }).mouseout(function() {
+        $cursor.removeClass('hide');
+    });
 
 
 })();/*
