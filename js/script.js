@@ -11,19 +11,6 @@ $(function(){ // DOCUMENT READY...
 
 
 
-    /* <img> 드래그 방지 */
-    $('img').on('dragstart', function(event) {
-        event.preventDefault();
-    });
-
-
-
-})();/*
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-*/(function(){
-
-
-
     /* start */
     $mainWrap.addClass('center active');
 
@@ -34,21 +21,17 @@ $(function(){ // DOCUMENT READY...
 */(function(){
 
 
-    /* resize 새로고침 */
-    // window.addEventListener('resize', function() {
-    //     location.reload();
-    //     console.log('a');
-    // }, true);
 
-    // resize();
+    /* <img> 드래그 방지 */
+    $('img').on('dragstart', function(event) {
+        event.preventDefault();
+    });
 
 
 
 })();/*
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 */(function(){
-
-
 
 
 
@@ -206,6 +189,7 @@ $(function(){ // DOCUMENT READY...
 
 
 
+    /* 화면이동 버튼 이벤트 */ 
     var winW = $mainWrap.width();
 
     var spread = function() {
@@ -222,7 +206,7 @@ $(function(){ // DOCUMENT READY...
 
     // shop 화면이동
     $sign.find('.btn_shop').on('click', function() {
-        if( !$mainWrap.hasClass('pointerNone') ){            
+        if( !$mainWrap.hasClass('pointerNone') ){
             $mainWrap.addClass('pointerNone').css('cursor','');
 
             if( $mainWrap.hasClass('center') ){
@@ -245,8 +229,8 @@ $(function(){ // DOCUMENT READY...
                 });
                 $mainWrap.addClass('left').removeClass('right center');
             }
-        } 
-        
+        }
+
         if ( $mainWrap.hasClass('right') ){
             $paging.find('.page2 i').css({
                 'left' : 'auto',
@@ -301,8 +285,8 @@ $(function(){ // DOCUMENT READY...
                     'transition' : ''
                 });
                 $mainWrap.addClass('right').removeClass('left center');
-            } 
-            
+            }
+
             if ( $mainWrap.hasClass('left') ){
                 $paging.find('.page1 i').css({
                     'left' : 'auto',
@@ -352,8 +336,8 @@ $(function(){ // DOCUMENT READY...
                 }).animate({ 'width' : 0 }, 800, function(){
                     $mainWrap.removeClass('pointerNone');
                 });
-            } 
-            
+            }
+
             if ($mainWrap.hasClass('right')){
                 $paging.find('.page2 i').css({
                     'left' : 'auto',
@@ -394,6 +378,16 @@ $(function(){ // DOCUMENT READY...
 
 
 
+    /* 표지판(SIGN) */
+
+
+
+})();/*
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+*/(function(){
+
+
+
     /* 페이징 */
     $paging.find('.page1').on('click', function() {
         $sign.find('.btn_shop').click();
@@ -415,10 +409,10 @@ $(function(){ // DOCUMENT READY...
 
 
 
-    /* 커서 모양 변경 */ 
+    /* 커서 모양 변경 */
     var $cursor = $mainWrap.find('#cursor');
     var wrapW = $mainWrap.width();
-    var wrapL = wrapW / 5;
+    var wrapL = wrapW / 6;
     var wrapR = wrapW - wrapL;
 
     function getPosition(e) {
@@ -468,7 +462,7 @@ $(function(){ // DOCUMENT READY...
 
 
 
-    /* 배경 클릭시 화면 전환  */
+    /* 사이드 네비게이션  */
     $mainWrap.on('click', function() {
         if ( $mainWrap.hasClass('center') && !$mainWrap.hasClass('pointerNone') ){
             if ($mainWrap.attr('cursor-focus') == 'fa'){
@@ -495,7 +489,7 @@ $(function(){ // DOCUMENT READY...
 
 
 
-    /* 커서 animate 숨기기 */ 
+    /* 커서 animate 숨기기 */
     var $cursor = $mainWrap.find('#cursor');
 
     $mainWrap.find('.cursorHide').mouseover(function() {
@@ -503,6 +497,22 @@ $(function(){ // DOCUMENT READY...
     }).mouseout(function() {
         $cursor.removeClass('hide');
     });
+
+
+
+})();/*
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+*/(function(){
+
+
+
+    /* Hover에 따른 배경 blur 처리 */ 
+    // $mainWrap.find('.fadeBlur').mouseover(function() {
+    //     $spread.addClass('blur');
+    // }).mouseout(function() {
+    //     $spread.removeClass('blur');
+    // });
+
 
 
 })();/*

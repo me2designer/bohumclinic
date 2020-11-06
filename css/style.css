@@ -5,7 +5,7 @@
 /**************************************************************************** 
     reset
 ****************************************************************************/
-* {-ms-user-select: none; -moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; user-select: none;}
+* {-ms-user-select: none; -moz-user-select: -moz-none; -khtml-user-select: none; -webkit-user-select: none; user-select: none;} /* Android에서 파랑색 하이라이트 제거 */
 
 
 /**************************************************************************** 
@@ -13,7 +13,7 @@
 ****************************************************************************/
 /* Frame */
 html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png') 0 0}
-#wrap {overflow:hidden;position:fixed;left:50%;top:50%;width:1920px;height:0;font-family:'NotoSansKR',sans-serif;font-size:3.6vw;letter-spacing:-0.03em;opacity:0;transform:translate(-50%, -50%)}
+#wrap {overflow:hidden;position:fixed;left:50%;top:50%;width:1920px;height:0;font-family:'NotoSansKR',sans-serif;letter-spacing:-0.03em;opacity:0;transform:translate(-50%, -50%);}
 #wrap.active {visibility:visible;height:100%;min-height:920px;max-height:1080px;opacity:1}
 
 
@@ -22,39 +22,54 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 ****************************************************************************/
 /* 사이드 네비게이션 */
 #sidenav {position:absolute;z-index:1;width:100%;height:100%}
-#sidenav .shadow {position:absolute;top:0;width:0;height:100%}
-#sidenav .shadow.shop {left:0;background:linear-gradient(to right, rgba(0,0,0,.8), rgba(0,0,0,.3) 60%, transparent)}
-#sidenav .shadow.fa {right:0;background:linear-gradient(to left, rgba(0,0,0,.8), rgba(0,0,0,.3) 60%, transparent)}
-#sidenav .shadow span {display:block;position:absolute;top:50%;font-size:30px;color:#fff;white-space:nowrap;text-shadow:2px 2px 8px #000;opacity:0}
-#sidenav .shadow.shop span {left:0}
-#sidenav .shadow.fa span {right:0}
-#sidenav .shadow.shop span::before {content:"";display:inline-block;width:0.8em;height:0.8em;margin:0.2em 0 0 0.2em;border-width:0.1em 0 0 0.1em;border-color:#fff;transform:rotate(-45deg)}
-#sidenav .shadow.fa span::after {content:"";display:inline-block;width:0.8em;height:0.8em;margin:0.2em 0 0 0.2em;border-width:0.1em 0 0 0.1em;border-color:#fff;transform:rotate(135deg)}
-#wrap.pointerNone #sidenav {z-index:-1}
-#wrap.active #sidenav .shadow {transition:all 1s}
-#wrap.active #sidenav .shadow span {transition:all 0.3s}
-#wrap.center[cursor-focus="shop"] #sidenav .shop {width:400px;transition:all 0.6s}
-#wrap.center[cursor-focus="shop"] #sidenav .shop span {left:30px;opacity:1;transition:all 0.6s}
-#wrap.center[cursor-focus="fa"] #sidenav .fa {width:400px;transition:all 0.6s}
-#wrap.center[cursor-focus="fa"] #sidenav .fa span {right:30px;opacity:1;transition:all 0.6s}
-#wrap.left[cursor-focus="fa"] #sidenav .fa {width:400px;transition:all 0.6s}
-#wrap.left[cursor-focus="fa"] #sidenav .fa span {right:30px;opacity:1;transition:all 0.6s}
-#wrap.right[cursor-focus="shop"] #sidenav .shop {width:400px;transition:all 0.6s}
-#wrap.right[cursor-focus="shop"] #sidenav .shop span {left:30px;opacity:1;transition:all 0.6s}
+#sidenav .shadow {position:absolute;top:0;width:0;height:100%;transition:width 1s, opacity 0.5s ease-in-out}
+#sidenav .shadow.shop {left:0;background:linear-gradient(to right, rgba(0,0,0,.8), rgba(0,0,0,.5) 50%, transparent)}
+#sidenav .shadow.fa {right:0;background:linear-gradient(to left, rgba(0,0,0,.8), rgba(0,0,0,.5) 50%, transparent)}
+#sidenav .shadow .tit {position:absolute;top:50%;opacity:0;white-space:nowrap;transition:all 0.3s}
+#sidenav .shadow.shop .tit {left:0}
+#sidenav .shadow.shop .tit:before {content:'';display:inline-block;width:15px;height:15px;margin:1px 0 0 5px;border-width:3px 0 0 3px;border-color:#fff;vertical-align:middle;transform:rotate(-45deg)}
+#sidenav .shadow.shop .tit:after {content:'고객이 샵으로 방문하는 보험클리닉';font-size:30px;color:#fff;vertical-align:middle;text-shadow:1px 1px 6px #000}
+#sidenav .shadow.fa .tit {right:0}
+#sidenav .shadow.fa .tit:after {content:'';display:inline-block;width:15px;height:15px;margin:6px 0 0 5px;border-width:3px 0 0 3px;border-color:#fff;vertical-align:middle;transform:rotate(135deg)}
+#sidenav .shadow.fa .tit:before {content:'전문가가 찾아가는 보험클리닉';font-size:30px;color:#fff;vertical-align:middle;text-shadow:1px 1px 6px #000}
+#sidenav .shadow .arr {position:absolute;top:50%;left:0;width:300px;margin-top:-55px;font-size:0;transition:opacity 0.5s ease-in-out}
+#sidenav .shadow.fa .arr {left:auto;right:0;transform:rotate(180deg)}
+#sidenav .shadow .arr i {display:inline-block;width:110px;height:110px;margin:20px 0 20px -50px;border-width:15px 0 0 15px;border-color:#fff;opacity:0.7;transform:rotate(-45deg);animation:sidenavArr 0.8s infinite alternate ease-in-out}
+#sidenav .shadow .arr i:nth-child(1) {margin-left:26px;animation-delay:0.4s}
+#sidenav .shadow .arr i:nth-child(2) {animation-delay:0.2s} 
+#sidenav .shadow .arr i:nth-child(3) {}
+#wrap.pointerNone .shadow .arr {opacity:0}
+#wrap.center[cursor-focus="shop"] #sidenav .shop,
+#wrap.right[cursor-focus="shop"] #sidenav .shop {width:700px;;transition:all 0.6s}
+#wrap.center[cursor-focus="shop"] #sidenav .shop .arr,
+#wrap.right[cursor-focus="shop"] #sidenav .shop .arr {opacity:0}
+#wrap.center[cursor-focus="shop"] #sidenav .shop .tit,
+#wrap.right[cursor-focus="shop"] #sidenav .shop .tit {left:30px;opacity:1;transition:all 0.6s}
+#wrap.center[cursor-focus="fa"] #sidenav .fa,
+#wrap.left[cursor-focus="fa"] #sidenav .fa {width:700px;transition:all 0.6s}
+#wrap.center[cursor-focus="fa"] #sidenav .fa .arr, 
+#wrap.left[cursor-focus="fa"] #sidenav .fa .arr {opacity:0}
+#wrap.center[cursor-focus="fa"] #sidenav .fa .tit,
+#wrap.left[cursor-focus="fa"] #sidenav .fa .tit {right:30px;opacity:1;transition:all 0.6s}
+#wrap.left #sidenav .shop {opacity:0}
+#wrap.right #sidenav .fa {opacity:0}
+ @keyframes sidenavArr {
+    90%, 100%            {opacity:0;transform:translateX(-5px) rotate(-45deg)}
+}
 
 /* 커서 형태 변경 */
-#cursor  {position:absolute;z-index:10;width:128px;height:94px;margin:5px 0 0 5px;background: 0 0 no-repeat;transition:opacity 0.3s;animation:cursorBG 0.8s infinite alternate ease-in-out, cursorUpdown 1.2s infinite alternate ease-in-out}
+#cursor  {position:absolute;z-index:10;width:90px;height:66px;margin:5px 0 0 5px;background: 0 0 no-repeat;transition:opacity 0.3s;animation:cursorBG 0.8s infinite alternate ease-in-out, cursorUpdown 1.2s infinite alternate ease-in-out}
 #cursor.hide {opacity:0}
 #wrap.center[cursor-focus="sign"] #cursor {background-image:url('/img/type_a/cursor_center.png')}
-#wrap.center[cursor-focus="shop"] #cursor {background-image:url('/img/type_a/cursor_left.png')}
-#wrap.center[cursor-focus="fa"] #cursor {background-image:url('/img/type_a/cursor_right.png')}
-#wrap.left[cursor-focus="fa"] #cursor {background-image:url('/img/type_a/cursor_right.png')}
-#wrap.right[cursor-focus="shop"] #cursor {background-image:url('/img/type_a/cursor_left.png')}
+#wrap.center[cursor-focus="shop"] #cursor,
+#wrap.right[cursor-focus="shop"] #cursor {background-image:url('/img/type_a/cursor_left.png?v=1')}
+#wrap.center[cursor-focus="fa"] #cursor,
+#wrap.left[cursor-focus="fa"] #cursor {background-image:url('/img/type_a/cursor_right.png?v=1')}
 @keyframes cursorBG {        
     0%, 24.99%          {background-position-y:0}
-    25%, 49.99%         {background-position-y:-94px}
-    50%, 74.99%         {background-position-y:-188px}
-    75%, 100%           {background-position-y:-282px}
+    25%, 49.99%         {background-position-y:-66px}
+    50%, 74.99%         {background-position-y:-132px}
+    75%, 100%           {background-position-y:-198px}
 }
 @keyframes cursorUpdown {        
     50%                 {margin-top:15px}
@@ -63,8 +78,6 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 
 /* 페이징 */
 #pagination {position:fixed;bottom:0;left:50%;z-index:10;transform:translateX(-50%)}
-.scroll-to-explore { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); color: white; font-size: 13px; font-weight: 600; text-align: center;letter-spacing:0;}
-.scroll-to-explore span { display: inline-block; width: 30px; height: 30px; margin-bottom: 5px; background: transparent url('/img/type_a/mouse.svg') center center no-repeat; background-size: contain; }
 #pagination .page {display:inline-block;position:relative;width:150px;height:80px;cursor: pointer;}
 #pagination .page:after {content:'';position:absolute;top:50%;left:0;width:100%;height:1px;background-color:rgba(255, 255, 255, 0.5);}
 #pagination .page i {position:absolute;top:50%;width:0;height:6px;background-color:#fff;transform:translateY(-50%)}
@@ -73,8 +86,7 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 #sign {position:relative;z-index:1;text-align:center;height:100%}
 #sign .inner {display:inline-block;position:relative;height:100%;width:850px;background:url('/img/type_a/visual_sign.png') center bottom no-repeat;background-size:95%}
 #sign .board {position:absolute;top:-130px;left:50%;z-index:1;transform:translateX(-50%)}
-#sign .board .tit {position:absolute;top:32px;left:68px;font-family:'HGGGothicssi',sans-serif;font-size:40px;font-weight:800;color:#fff}
-#sign .board img {width:auto;height:170px}
+#sign .board img {width:500px;max-width:none}
 #sign .btn_shop {position:absolute;top:-95px;left:-2px;height:9.2%;transform-origin:center right}
 #sign .btn_fa {display:flex;justify-content:flex-end;position:absolute;top:-95px;right:-11px;height:9.2%;transform-origin:center left}
 #sign .btn_shop img,
@@ -146,9 +158,8 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 }
 
 /* 배경 */
-#spreadBG {position:absolute;top:0;left:0;height:100%}
+#spreadBG {position:absolute;top:0;left:0;height:100%;transition:filter 0.2s ease-in-out}
 #spreadBG img {display:block;width:auto;max-width:none;height:100%}
-/* #wrap.active.center #spreadBG {filter:blur(3px)} */
 #wrap.left #spreadBG,
 #wrap.right #spreadBG {transition:all 3s ease-in-out}
 @media screen and (min-height : 900px) {
