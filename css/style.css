@@ -87,6 +87,9 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 #pagination .page3:before {content:'전문가 직접방문'}
 #pagination .page:hover:before {top:0;opacity:1}
 #pagination .page i {position:absolute;top:50%;width:0;height:6px;background-color:#fff;transform:translateY(-50%)}
+#wrap.left #pagination .page1:before {top:0;opacity:1}
+#wrap.center #pagination .page2:before {top:0;opacity:1}
+#wrap.right #pagination .page3:before {top:0;opacity:1}
 
 /* 표지판 */
 #sign {position:relative;z-index:1;text-align:center;height:100%}
