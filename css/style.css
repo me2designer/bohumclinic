@@ -32,8 +32,9 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 #sidenav .shadow.fa .tit {right:0}
 #sidenav .shadow.fa .tit:after {content:'';display:inline-block;width:15px;height:15px;margin:6px 0 0 5px;border-width:3px 0 0 3px;border-color:#fff;vertical-align:middle;transform:rotate(135deg)}
 #sidenav .shadow.fa .tit:before {content:'전문가가 찾아가는 보험클리닉';font-size:30px;color:#fff;vertical-align:middle;text-shadow:1px 1px 6px #000}
-#sidenav .shadow .arr {position:absolute;top:50%;left:0;width:300px;margin-top:-55px;font-size:0;transition:opacity 0.5s ease-in-out}
-#sidenav .shadow.fa .arr {left:auto;right:0;transform:rotate(180deg)}
+#sidenav .shadow .arr {position:absolute;top:50%;width:300px;margin-top:-55px;font-size:0;transition:opacity 0.5s ease-in-out}
+#sidenav .shadow.shop .arr {left:50px}
+#sidenav .shadow.fa .arr {left:auto;right:50px;transform:rotate(180deg)}
 #sidenav .shadow .arr i {display:inline-block;width:110px;height:110px;margin:20px 0 20px -50px;border-width:15px 0 0 15px;border-color:#fff;opacity:0.7;transform:rotate(-45deg);animation:sidenavArr 0.8s infinite alternate ease-in-out}
 #sidenav .shadow .arr i:nth-child(1) {margin-left:26px;animation-delay:0.4s}
 #sidenav .shadow .arr i:nth-child(2) {animation-delay:0.2s} 
@@ -54,7 +55,7 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 #wrap.left #sidenav .shop {opacity:0}
 #wrap.right #sidenav .fa {opacity:0}
  @keyframes sidenavArr {
-    90%, 100%            {opacity:0;transform:translateX(-5px) rotate(-45deg)}
+    90%, 100%            {opacity:0;transform:translateX(-20px) rotate(-45deg)}
 }
 
 /* 커서 형태 변경 */
@@ -78,8 +79,13 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 
 /* 페이징 */
 #pagination {position:fixed;bottom:0;left:50%;z-index:10;transform:translateX(-50%)}
-#pagination .page {display:inline-block;position:relative;width:150px;height:80px;cursor: pointer;}
-#pagination .page:after {content:'';position:absolute;top:50%;left:0;width:100%;height:1px;background-color:rgba(255, 255, 255, 0.5);}
+#pagination .page {display:inline-block;position:relative;width:150px;height:80px;cursor:pointer}
+#pagination .page:after {content:'';position:absolute;top:50%;left:0;width:100%;height:1px;background-color:rgba(255, 255, 255, 0.5)}
+#pagination .page:before {content:'';position:absolute;top:20px;width:100%;font-size:16px;color:#fff;text-align:center;white-space:nowrap;text-shadow:1px 1px 3px rgba(0,0,0,.8);opacity:0;transition:top 0.3s ease-in-out, opacity 0.2s ease-in-out}
+#pagination .page1:before {content:'보험샵으로 고객방문'}
+#pagination .page2:before {content:'보험클리닉 찾기'}
+#pagination .page3:before {content:'전문가 직접방문'}
+#pagination .page:hover:before {top:0;opacity:1}
 #pagination .page i {position:absolute;top:50%;width:0;height:6px;background-color:#fff;transform:translateY(-50%)}
 
 /* 표지판 */

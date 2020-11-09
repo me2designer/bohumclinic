@@ -61,8 +61,8 @@ $(function(){ // DOCUMENT READY...
         )
         : (
             0 < diffY
-            ? console.log("to top")
-            : console.log("to bottom")
+            ? console.log("drag to top")
+            : console.log("drag to bottom")
         )
 
         initialX = null;
@@ -159,25 +159,25 @@ $(function(){ // DOCUMENT READY...
     /* 키보드 방향키 이벤트 */
     window.onkeydown = function(){
         if(event.keyCode == 37){
-            console.log('좌');
-            //좌
+            console.log('key left');
+            //key left
             if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
                 $sign.find('.btn_shop').click();
             } else if ($mainWrap.hasClass('right')){
                 AlignCenter();
             }
         } else if (event.keyCode == 38){
-            //상
+            //key top
         } else if (event.keyCode == 39){
-            console.log('우');
-            //우
+            console.log('key right');
+            //key right
             if (!$mainWrap.hasClass('left') && !$mainWrap.hasClass('right')){
                 $sign.find('.btn_fa').click();
             } else if ($mainWrap.hasClass('left')){
                 AlignCenter();
             }
         } else if (event.keyCode == 40){
-            //하
+            //key bottom
         }
     };
 
@@ -189,7 +189,7 @@ $(function(){ // DOCUMENT READY...
 
 
 
-    /* 화면이동 버튼 이벤트 */ 
+    /* SIGN(이정표) 표지판 */ 
     var winW = $mainWrap.width();
 
     var spread = function() {
@@ -209,8 +209,7 @@ $(function(){ // DOCUMENT READY...
         if( !$mainWrap.hasClass('pointerNone') ){
             $mainWrap.addClass('pointerNone').css('cursor','');
 
-            if( $mainWrap.hasClass('center') ){
-                console.log('shop move1');
+            if( $mainWrap.hasClass('center') ){                
                 $paging.find('.page2 i').css({
                     'left' : 0,
                     'right' : 'auto'
@@ -378,16 +377,6 @@ $(function(){ // DOCUMENT READY...
 
 
 
-    /* 표지판(SIGN) */
-
-
-
-})();/*
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-*/(function(){
-
-
-
     /* 페이징 */
     $paging.find('.page1').on('click', function() {
         $sign.find('.btn_shop').click();
@@ -415,43 +404,46 @@ $(function(){ // DOCUMENT READY...
     var wrapL = wrapW / 6;
     var wrapR = wrapW - wrapL;
 
-    function getPosition(e) {
-        var x = e.clientX - $mainWrap.offset().left;
-        var y = e.clientY - $mainWrap.offset().top;
-        return { x : x , y : y }
+    // #wrap 마우스 좌표 계산
+    function getPosition(e) {        
+            var x = e.clientX - $mainWrap.offset().left;
+            var y = e.clientY - $mainWrap.offset().top;
+            return { x : x , y : y }
     }
 
+    // #wrap 마우스 좌표에 따른 이벤트
     $mainWrap.mousemove(function(e){
-        posX = getPosition(e).x;
-        posY = getPosition(e).y;
+        if (!$mainWrap.hasClass('pointerNone')){
+            posX = getPosition(e).x;
+            posY = getPosition(e).y;
 
-        $cursor.css({
-            'left' : posX,
-            'top' : posY
-        });
+            $cursor.css({
+                'left' : posX,
+                'top' : posY
+            });
 
-        if( $mainWrap.hasClass('center') && !$mainWrap.hasClass('pointerNone') ){
-            if (posX < wrapL){
-                $mainWrap.attr('cursor-focus','shop').css('cursor','pointer');
-            } else if (posX > wrapR){
-                $mainWrap.attr('cursor-focus','fa').css('cursor','pointer');
-            } else {
-                $mainWrap.attr('cursor-focus','sign').css('cursor','');
-            }
-        } else if ( $mainWrap.hasClass('left') && !$mainWrap.hasClass('pointerNone') ){
-            if (posX > wrapR){
-                $mainWrap.attr('cursor-focus','fa').css('cursor','pointer');
-            } else {
-                $mainWrap.attr('cursor-focus','').css('cursor','');
-            }
-        } else if ( $mainWrap.hasClass('right') && !$mainWrap.hasClass('pointerNone') ){
-            if (posX < wrapL){
-                $mainWrap.attr('cursor-focus','shop').css('cursor','pointer');
-            } else {
-                $mainWrap.attr('cursor-focus','').css('cursor','');
+            if( $mainWrap.hasClass('center') ){
+                if (posX < wrapL){
+                    $mainWrap.attr('cursor-focus','shop').css('cursor','pointer');
+                } else if (posX > wrapR){
+                    $mainWrap.attr('cursor-focus','fa').css('cursor','pointer');
+                } else {
+                    $mainWrap.attr('cursor-focus','sign').css('cursor','');
+                }
+            } else if ( $mainWrap.hasClass('left') ){
+                if (posX > wrapR){
+                    $mainWrap.attr('cursor-focus','fa').css('cursor','pointer');
+                } else {
+                    $mainWrap.attr('cursor-focus','').css('cursor','');
+                }
+            } else if ( $mainWrap.hasClass('right') ){
+                if (posX < wrapL){
+                    $mainWrap.attr('cursor-focus','shop').css('cursor','pointer');
+                } else {
+                    $mainWrap.attr('cursor-focus','').css('cursor','');
+                }
             }
         }
-
     });
 
 
@@ -464,19 +456,21 @@ $(function(){ // DOCUMENT READY...
 
     /* 사이드 네비게이션  */
     $mainWrap.on('click', function() {
-        if ( $mainWrap.hasClass('center') && !$mainWrap.hasClass('pointerNone') ){
-            if ($mainWrap.attr('cursor-focus') == 'fa'){
-                $sign.find('.btn_fa').click();
-            } else if ($mainWrap.attr('cursor-focus') == 'shop'){
-                $sign.find('.btn_shop').click();
-            }
-        } else if ($mainWrap.hasClass('left') && !$mainWrap.hasClass('pointerNone')){
-            if ($mainWrap.attr('cursor-focus') == 'fa'){
-                $sign.find('.btn_fa').click();
-            }
-        } else if ($mainWrap.hasClass('right') && !$mainWrap.hasClass('pointerNone')){
-            if ($mainWrap.attr('cursor-focus') == 'shop'){
-                $sign.find('.btn_shop').click();
+        if ( !$mainWrap.hasClass('pointerNone') ){
+            if ( $mainWrap.hasClass('center') ){
+                if ($mainWrap.attr('cursor-focus') == 'fa'){
+                    $sign.find('.btn_fa').click();
+                } else if ($mainWrap.attr('cursor-focus') == 'shop'){
+                    $sign.find('.btn_shop').click();
+                }
+            } else if ( $mainWrap.hasClass('left') ){
+                if ($mainWrap.attr('cursor-focus') == 'fa'){
+                    $sign.find('.btn_fa').click();
+                }
+            } else if ( $mainWrap.hasClass('right') ){
+                if ($mainWrap.attr('cursor-focus') == 'shop'){
+                    $sign.find('.btn_shop').click();
+                }
             }
         }
     });
