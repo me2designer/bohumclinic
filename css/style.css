@@ -59,7 +59,7 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 }
 
 /* 커서 형태 변경 */
-#cursor  {position:absolute;z-index:10;width:90px;height:66px;margin:5px 0 0 5px;background: 0 0 no-repeat;transition:opacity 0.3s;animation:cursorBG 0.8s infinite alternate ease-in-out, cursorUpdown 1.2s infinite alternate ease-in-out}
+#cursor  {position:absolute;z-index:10;width:90px;height:66px;margin:40px 0 0 -45px;background: 0 0 no-repeat;transition:opacity 0.3s;animation:cursorBG 0.8s infinite alternate ease-in-out, cursorUpdown 1.2s infinite alternate ease-in-out}
 #cursor.hide {opacity:0}
 #wrap.center[cursor-focus="sign"] #cursor {background-image:url('/img/type_a/cursor_center.png')}
 #wrap.center[cursor-focus="shop"] #cursor,
@@ -73,41 +73,44 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
     75%, 100%           {background-position-y:-198px}
 }
 @keyframes cursorUpdown {        
-    50%                 {margin-top:15px}
-    100%               {margin-top:5px}
+    50%                 {margin-top:55px}
+    100%               {margin-top:40px}
 }
 
 /* 페이징 */
 #pagination {position:fixed;bottom:0;left:50%;z-index:10;transform:translateX(-50%)}
-#pagination .page {display:inline-block;position:relative;width:150px;height:80px;cursor:pointer}
-#pagination .page:after {content:'';position:absolute;top:50%;left:0;width:100%;height:1px;background-color:rgba(255, 255, 255, 0.5)}
-#pagination .page:before {content:'';position:absolute;top:20px;width:100%;font-size:16px;color:#fff;text-align:center;white-space:nowrap;text-shadow:1px 1px 3px rgba(0,0,0,.8);opacity:0;transition:top 0.3s ease-in-out, opacity 0.2s ease-in-out}
+#pagination .page {display:inline-block;position:relative;width:200px;height:80px;margin:0 2px;cursor:pointer}
+#pagination .page:after {content:'';position:absolute;top:50%;left:0;width:100%;height:2px;background-color:#fff;box-shadow:1px 1px 8px rgba(0, 0, 0, 0.8);}
+#pagination .page:before {content:'';position:absolute;top:0;width:100%;font-family:'HGGGothicssi';font-size:16px;font-weight:800;color:#fff;text-align:center;white-space:nowrap;text-shadow:1px 1px 3px rgba(0,0,0,.8);opacity:0.6;transition:opacity 0.2s ease-in-out}
 #pagination .page1:before {content:'보험샵으로 고객방문'}
 #pagination .page2:before {content:'보험클리닉 찾기'}
 #pagination .page3:before {content:'전문가 직접방문'}
 #pagination .page:hover:before {top:0;opacity:1}
-#pagination .page i {position:absolute;top:50%;width:0;height:6px;background-color:#fff;transform:translateY(-50%)}
-#wrap.left #pagination .page1:before {top:0;opacity:1}
-#wrap.center #pagination .page2:before {top:0;opacity:1}
-#wrap.right #pagination .page3:before {top:0;opacity:1}
+#pagination .page i {position:absolute;top:50%;z-index:1;width:0;height:2px}
+#pagination .page1 i {background-color:#20d8ff}
+#pagination .page2 i {background-color:#ffe5b1}
+#pagination .page3 i {background-color:#fdc314}
+#wrap.left #pagination .page1:before {opacity:1;color:#20d8ff}
+#wrap.center #pagination .page2:before {opacity:1;color:#ffe5b1}
+#wrap.right #pagination .page3:before {opacity:1;color:#fdc314}
 
 /* 표지판 */
 #sign {position:relative;z-index:1;text-align:center;height:100%}
 #sign .inner {display:inline-block;position:relative;height:100%;width:850px;background:url('/img/type_a/visual_sign.png') center bottom no-repeat;background-size:95%}
 #sign .board {position:absolute;top:-130px;left:50%;z-index:1;transform:translateX(-50%)}
 #sign .board img {width:500px;max-width:none}
-#sign .btn_shop {position:absolute;top:-95px;left:-2px;height:9.2%;transform-origin:center right}
-#sign .btn_fa {display:flex;justify-content:flex-end;position:absolute;top:-95px;right:-11px;height:9.2%;transform-origin:center left}
-#sign .btn_shop img,
-#sign .btn_fa img {display:block;width:408px}
+#sign .btn_shop {position:absolute;top:-95px;left:-2px;height:9.2%}
+#sign .btn_fa {display:flex;justify-content:flex-end;position:absolute;top:-95px;right:-11px;height:9.2%}
+#sign .btn_shop img {display:block;width:408px;transform-origin:center right}
+#sign .btn_fa img {display:block;width:408px;transform-origin:center left}
 #wrap.center #sign {transition:all 2s ease-in-out}
-#wrap.left #sign {transform:translateX(100%);transition:all 3s ease-in-out}
-#wrap.right #sign {transform:translateX(-100%);transition:all 3s ease-in-out}
+#wrap.left #sign {transform:translateX(100%);transition:all 1.5s ease-in-out}
+#wrap.right #sign {transform:translateX(-100%);transition:all 1.5s ease-in-out}
 #wrap.active #sign .board {top:40px;transition:all 0.8s 0.5s ease-out}
 #wrap.active #sign .btn_shop {top:22.78%;transition:all 1s 1.5s ease-out}
 #wrap.active #sign .btn_fa {top:30.78%;transition:all 1s 1.7s ease-out}
-#wrap.active #sign .btn_shop:hover,
-#wrap.active #sign .btn_fa:hover {animation:signBtnLoop 1s linear}
+#wrap.active #sign .btn_shop:hover img,
+#wrap.active #sign .btn_fa:hover img {animation:signBtnLoop 1s linear}
 @keyframes signBtnLoop {
     15%                   {transform:perspective(3000px) rotateY(-10deg);filter:brightness(1.2)}
     30%                   {transform:perspective(3000px) rotateY(10deg);filter:brightness(0.6)}
@@ -122,55 +125,75 @@ html,body {overflow:hidden;background:#000 url('/img/type_a/body_bg_pattern.png'
 }
 
 /* SHOP */
-#shop {position:absolute;left:18%;bottom:0;z-index:1;height:61.94%;width:50%}
+#shop {position:absolute;left:310px;bottom:0;z-index:1;height:61.94%;width:50%}
 #shop .txt_area {position:absolute;left:22%;top:-10%;}
 #shop .txt_area p {font-family:'HGGGothicssi';font-size:55px;font-weight:800;color:#fff;line-height:1.2em;white-space:nowrap;text-indent:10%;text-shadow:2px 2px 5px rgba(0, 0, 0, 0.5);opacity:0}
 #shop .txt_area p:nth-child(2) {font-size:88px;color:#00c1f9}
-#shop .link_shop {position:absolute;top:30%;left:46%;opacity:0;transform:scale(3.1) translateY(20%)}
-#shop .link_shop img {display:block;width:auto;height:25.83%}
+#shop .link_shop {position:absolute;top:210px;left:560px;display:block;width:80px;height:80px;border-radius:100%;background-color:#09c2e9;box-shadow:0 0 10px rgba(9, 194, 233, 1);opacity:0;animation:shopLinkCircle 1s infinite}
+#shop .link_shop:before,
+#shop .link_shop:after {content:'';position:absolute;top:50%;left:50%;width:90px;height:90px;border:3px solid #33f3ff;border-radius:100%;box-shadow:0 0 10px rgba(9, 194, 233, 1), inset 0 0 10px rgba(9, 194, 233, 1);transform:translate(-50%, -50%);opacity:0;}
+#shop .link_shop:before {animation:shopLinkCircle1 1s infinite}
+#shop .link_shop:after {animation:shopLinkCircle2 1s  0.2s infinite}
+#shop .link_shop span {position:absolute;top:50%;left:50%;z-index:1;font-family:'HGGGothicssi';font-size:26px;font-weight:800;color:#fff;white-space:nowrap;transform:translate(-50%, -50%)}
+#shop .link_shop span:after {content:'';position:absolute;bottom:-45px;left:50%;width:55px;height:45px;margin-left:-28px;background:url('/img/type_a/visual_shop_link.png') 0 0 no-repeat;animation:shopLinkArr 0.5s infinite alternate ease-in-out}
 #shop .model {display:block;width:auto;height:100%;opacity:0;transform:translateX(-50%)}
 #wrap.left #shop {pointer-events:all}
 #wrap.left #shop .txt_area p {text-indent:0;opacity:1;transition:text-indent 0.5s 2s ease-in-out, opacity 0.5s 2s ease-in-out}
 #wrap.left #shop .txt_area p:nth-child(2) {transition-delay:2.2s;animation:textShopLoop 1s 1.2s alternate infinite ease-in-out}
 #wrap.left #shop .txt_area p:nth-child(3) {transition-delay:2.4s}
-#wrap.left #shop .link_shop {opacity:1;transform:scale(1) translateY(0%);transition:all 0.5s 2.6s ease-in-out;animation:linkShop 1s 2.2s infinite alternate ease-in-out}
+#wrap.left #shop .link_shop {opacity:1;transition:opacity 1s 2.8s}
 #wrap.left #shop .model {opacity:1;transform:translateX(0);transition:opacity 0.5s 2s ease-in-out;}
 #wrap.active .model {transition:transform 1.5s ease-in-out, opacity 0.5s ease-in-out}
 #wrap.pointerNone #shop .link_shop {pointer-events:none}
-@keyframes linkShop {
-    0%       {transform:scale(1) translateY(0)}
-    100%     {transform:scale(1.1) translateY(20%)}
-}
-@keyframes textShopLoop {
+@keyframes textShopLoop {    
     100%        {text-shadow:0 0 50px #1300f9}
 }
+@keyframes shopLinkArr {
+    100%            {transform:translateY(7px)}
+}
+
 
 /* FA 화면 */
-#fa {position:absolute;left:18%;bottom:0;z-index:1;height:61.94%;width:50%;pointer-events:none}
-#fa .txt_area {position:absolute;left:110px;top:-46%}
+#fa {position:absolute;top:100px;left:300px;bottom:0;z-index:1;pointer-events:none}
+#fa .txt_area {}
 #fa .txt_area p {text-align:left;opacity:0;transform:translateX(-10%)}
 #fa .txt_area p:nth-child(2) {font-family:'HGGGothicssi';font-size:80px;font-weight:900;color:#fdc314}
 #fa .txt_area p img {margin:0;width:80%}
-#fa .link_fa {position:absolute;top:-13%;left:46%;opacity:0;transform:translateX(-20%)}
-#fa .link_fa img {display:block;width:auto;height:25.83%}
+#fa .link_fa {position:absolute;top:300px;left:540px;display:block;width:80px;height:80px;border-radius:100%;background-color:#ed7d04;box-shadow:0 0 10px rgba(237, 125, 4, 1);opacity:0;animation:shopLinkCircle 1s infinite}
+#fa .link_fa:before,
+#fa .link_fa:after {content:'';position:absolute;top:50%;left:50%;width:90px;height:90px;border:3px solid #ffdd71;border-radius:100%;box-shadow:0 0 10px rgba(255, 221, 113, 1), inset 0 0 10px rgba(255, 221, 113, 1);transform:translate(-50%, -50%);opacity:0;}
+#fa .link_fa:before {animation:shopLinkCircle1 1s infinite}
+#fa .link_fa:after {animation:shopLinkCircle2 1s  0.2s infinite}
+#fa .link_fa span {position:absolute;top:50%;left:50%;z-index:1;font-family:'HGGGothicssi';font-size:26px;font-weight:800;color:#fff;white-space:nowrap;transform:translate(-50%, -50%)}
+#fa .link_fa span:after {content:'';position:absolute;left:-50px;top:50%;width:45px;height:55px;margin-top:-26px;background:url('/img/type_a/visual_fa_link.png') 0 0 no-repeat;animation:shopLinkArr2 0.5s infinite alternate ease-in-out}
 #wrap.right #fa {pointer-events:all}
 #wrap.right #fa .txt_area p {opacity:1;transform:translateX(0);transition:all 0.5s 2s ease-in-out}
 #wrap.right #fa .txt_area p:nth-child(2) {transition-delay:2.2s;animation:textFaLoop 1s 2.2s alternate infinite ease-in-out}
 #wrap.right #fa .txt_area p:nth-child(3) {transition-delay:2.4s}
-#wrap.right #fa .link_fa {opacity:1;transform:translateX(0%);transition:all 0.5s 2.7s ease-in-out;animation:linkFa 1s 3.2s infinite alternate ease-in-out}
-@keyframes linkFa {
-    0%       {transform:translateX(0%)}
-    100%     {transform:translateX(-20%)}
-}
+#wrap.right #fa .link_fa {opacity:1;transition:opacity 1s 2.8s}
 @keyframes textFaLoop {
     100%        {text-shadow:0 0 50px #fd7414}
 }
+@keyframes shopLinkArr2 {
+    100%            {transform:translateX(7px)}
+}
+@keyframes shopLinkCircle {
+    0%, 30%         {width:80px;height:80px;margin:0}
+    10%             {width:86px;height:86px;margin:-3px 0 0 -3px;}
+}
+@keyframes shopLinkCircle1 {
+    30%, 60%         {opacity:1}
+    90%, 100%        {opacity:0}
+    100%             {width:140px;height:140px}
+}
+@keyframes shopLinkCircle2 {
+    30%, 60%         {opacity:0.6}
+    90%, 100%        {opacity:0}
+    100%             {width:140px;height:140px}
+}
 
 /* 배경 */
-#spreadBG {position:absolute;top:0;left:0;height:100%;transition:filter 0.2s ease-in-out}
+#spreadBG {position:absolute;top:0;left:0;height:100%;transition:filter 0.2s ease-in-out;}
 #spreadBG img {display:block;width:auto;max-width:none;height:100%}
 #wrap.left #spreadBG,
-#wrap.right #spreadBG {transition:all 3s ease-in-out}
-@media screen and (min-height : 900px) {
-    #spreadBG {transform:scale(1.1)}
-}
+#wrap.right #spreadBG {transition:all 1.5s ease-in-out}

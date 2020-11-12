@@ -2,6 +2,7 @@ var $mainWrap = $('#wrap');
 var $paging = $('#pagination');
 var $sign = $('#sign');
 var $spread = $('#spreadBG');
+var $cursor = $('#cursor');
 
 
 $(function(){ // DOCUMENT READY...
@@ -189,7 +190,7 @@ $(function(){ // DOCUMENT READY...
 
 
 
-    /* SIGN(이정표) 표지판 */ 
+    /* SIGN(이정표) 표지판  */
     var winW = $mainWrap.width();
 
     var spread = function() {
@@ -208,8 +209,9 @@ $(function(){ // DOCUMENT READY...
     $sign.find('.btn_shop').on('click', function() {
         if( !$mainWrap.hasClass('pointerNone') ){
             $mainWrap.addClass('pointerNone').css('cursor','');
+            $cursor.css('background-image','');
 
-            if( $mainWrap.hasClass('center') ){                
+            if( $mainWrap.hasClass('center') ){
                 $paging.find('.page2 i').css({
                     'left' : 0,
                     'right' : 'auto'
@@ -234,21 +236,21 @@ $(function(){ // DOCUMENT READY...
             $paging.find('.page2 i').css({
                 'left' : 'auto',
                 'right' : 0
-            }).animate({ 'width' : '100%' }, 1300);
+            }).animate({ 'width' : '100%' }, 700);
 
             $paging.find('.page3 i').css({
                 'left' : 0,
                 'right' : 'auto'
-            }).animate({ 'width' : 0 }, 1300, function(){
+            }).animate({ 'width' : 0 }, 700, function(){
                 $paging.find('.page2 i').css({
                     'left' : 0,
                     'right' : 'auto'
-                }).animate({ 'width' : 0 }, 1200);
+                }).animate({ 'width' : 0 }, 700);
 
                 $paging.find('.page1 i').css({
                     'left' : 'auto',
                     'right' : 0
-                }).animate({ 'width' : '100%' }, 1200, function(){
+                }).animate({ 'width' : '100%' }, 900, function(){
                     $mainWrap.removeClass('pointerNone');
                 });
             });
@@ -265,6 +267,7 @@ $(function(){ // DOCUMENT READY...
     $sign.find('.btn_fa').on('click', function () {
         if( !$mainWrap.hasClass('pointerNone') ){
             $mainWrap.addClass('pointerNone').css('cursor','');
+            $cursor.css('background-image','');
 
             if( $mainWrap.hasClass('center') ){
                 $paging.find('.page2 i').css({
@@ -290,21 +293,21 @@ $(function(){ // DOCUMENT READY...
                 $paging.find('.page1 i').css({
                     'left' : 'auto',
                     'right' : 0
-                }).animate({ 'width' : 0 }, 1300);
+                }).animate({ 'width' : 0 }, 700);
 
                 $paging.find('.page2 i').css({
                     'left' : 0,
                     'right' : 'auto'
-                }).animate({ 'width' : '100%' }, 1300, function(){
+                }).animate({ 'width' : '100%' }, 700, function(){
                     $paging.find('.page2 i').css({
                         'left' : 'auto',
                         'right' : 0
-                    }).animate({ 'width' : 0 }, 1200);
+                    }).animate({ 'width' : 0 }, 700);
 
                     $paging.find('.page3 i').css({
                         'left' : 0,
                         'right' : 'auto'
-                    }).animate({ 'width' : '100%' }, 1200, function(){
+                    }).animate({ 'width' : '100%' }, 900, function(){
                         $mainWrap.removeClass('pointerNone');
                     });
                 });
@@ -327,12 +330,12 @@ $(function(){ // DOCUMENT READY...
                 $paging.find('.page2 i').css({
                     'left' : 0,
                     'right' : 'auto'
-                }).animate({ 'width' : '100%' }, 800);
+                }).animate({ 'width' : '100%' }, 2000);
 
                 $paging.find('.page1 i').css({
                     'left' : 'auto',
                     'right' : 0,
-                }).animate({ 'width' : 0 }, 800, function(){
+                }).animate({ 'width' : 0 }, 2000, function(){
                     $mainWrap.removeClass('pointerNone');
                 });
             }
@@ -341,12 +344,12 @@ $(function(){ // DOCUMENT READY...
                 $paging.find('.page2 i').css({
                     'left' : 'auto',
                     'right' : 0
-                }).animate({ 'width' : '100%' }, 800);
+                }).animate({ 'width' : '100%' }, 2000);
 
                 $paging.find('.page3 i').css({
                     'left' : 0,
                     'right' : 'auto',
-                }).animate({ 'width' : 0 }, 800, function(){
+                }).animate({ 'width' : 0 }, 2000, function(){
                     $mainWrap.removeClass('pointerNone');
                 });
             }
@@ -379,15 +382,21 @@ $(function(){ // DOCUMENT READY...
 
     /* 페이징 */
     $paging.find('.page1').on('click', function() {
-        $sign.find('.btn_shop').click();
+        if( !$mainWrap.hasClass('pointerNone') ){
+            $sign.find('.btn_shop').click();
+        }
     });
 
     $paging.find('.page2').on('click', function() {
-        AlignCenter();
+        if( !$mainWrap.hasClass('pointerNone') ){
+            AlignCenter();
+        }
     });
 
     $paging.find('.page3').on('click', function() {
-        $sign.find('.btn_fa').click();
+        if( !$mainWrap.hasClass('pointerNone') ){
+            $sign.find('.btn_fa').click();
+        }
     });
 
 
@@ -398,22 +407,23 @@ $(function(){ // DOCUMENT READY...
 
 
 
-    /* 커서 모양 변경 */
-    var $cursor = $mainWrap.find('#cursor');
+    /* 마우스 좌표 이벤트 */
     var wrapW = $mainWrap.width();
-    var wrapL = wrapW / 6;
+    var wrapL = wrapW / 2;
     var wrapR = wrapW - wrapL;
+    var sidenavL = wrapW / 6;
+    var sidenavR = wrapW - sidenavL;
 
     // #wrap 마우스 좌표 계산
-    function getPosition(e) {        
+    function getPosition(e) {
             var x = e.clientX - $mainWrap.offset().left;
             var y = e.clientY - $mainWrap.offset().top;
             return { x : x , y : y }
     }
 
     // #wrap 마우스 좌표에 따른 이벤트
-    $mainWrap.mousemove(function(e){
-        if (!$mainWrap.hasClass('pointerNone')){
+    $mainWrap.on('mousemove', function(e){
+        if ( !$mainWrap.hasClass('pointerNone') ){
             posX = getPosition(e).x;
             posY = getPosition(e).y;
 
@@ -423,21 +433,27 @@ $(function(){ // DOCUMENT READY...
             });
 
             if( $mainWrap.hasClass('center') ){
-                if (posX < wrapL){
+                if (posX < sidenavL){
                     $mainWrap.attr('cursor-focus','shop').css('cursor','pointer');
-                } else if (posX > wrapR){
+                } else if (posX > sidenavR){
                     $mainWrap.attr('cursor-focus','fa').css('cursor','pointer');
                 } else {
                     $mainWrap.attr('cursor-focus','sign').css('cursor','');
                 }
+
+                if (posX < wrapL){
+                    $cursor.css('background-image','url(/img/type_a/cursor_left.png)');
+                } else {
+                    $cursor.css('background-image','url(/img/type_a/cursor_right.png)');
+                }
             } else if ( $mainWrap.hasClass('left') ){
-                if (posX > wrapR){
+                if (posX > sidenavR){
                     $mainWrap.attr('cursor-focus','fa').css('cursor','pointer');
                 } else {
                     $mainWrap.attr('cursor-focus','').css('cursor','');
                 }
             } else if ( $mainWrap.hasClass('right') ){
-                if (posX < wrapL){
+                if (posX < sidenavL){
                     $mainWrap.attr('cursor-focus','shop').css('cursor','pointer');
                 } else {
                     $mainWrap.attr('cursor-focus','').css('cursor','');
@@ -448,10 +464,17 @@ $(function(){ // DOCUMENT READY...
 
 
 
+
 })();/*
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 */(function(){
 
+
+
+
+})();/*
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+*/(function(){
 
 
     /* 사이드 네비게이션  */
@@ -500,7 +523,7 @@ $(function(){ // DOCUMENT READY...
 
 
 
-    /* Hover에 따른 배경 blur 처리 */ 
+    /* Hover에 따른 배경 blur 처리 */
     // $mainWrap.find('.fadeBlur').mouseover(function() {
     //     $spread.addClass('blur');
     // }).mouseout(function() {
