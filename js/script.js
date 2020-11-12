@@ -198,6 +198,7 @@ $(function(){ // DOCUMENT READY...
         var center = Math.abs((width / 2 - winW / 2)) * -1;
         var right = ($spread.width() - winW) * -1;
 
+        console.log(width, center, right);
         return {center : center, right : right}
     }
 
@@ -221,7 +222,9 @@ $(function(){ // DOCUMENT READY...
                     'left' : 'auto',
                     'right' : 0
                 }).animate({ 'width' : '100%' }, 1600, function(){
-                    $mainWrap.removeClass('pointerNone');
+                    setTimeout(function(){                        
+                        $mainWrap.removeClass('pointerNone');
+                    }, 1000);
                 });
 
                 $spread.css({
@@ -251,7 +254,9 @@ $(function(){ // DOCUMENT READY...
                     'left' : 'auto',
                     'right' : 0
                 }).animate({ 'width' : '100%' }, 900, function(){
-                    $mainWrap.removeClass('pointerNone');
+                    setTimeout(function(){                        
+                        $mainWrap.removeClass('pointerNone');
+                    }, 1000);
                 });
             });
 
@@ -279,7 +284,9 @@ $(function(){ // DOCUMENT READY...
                     'left' : 0,
                     'right' : 'auto'
                 }).animate({ 'width' : '100%' }, 1600, function(){
-                    $mainWrap.removeClass('pointerNone');
+                    setTimeout(function(){                        
+                        $mainWrap.removeClass('pointerNone');
+                    }, 1000);
                 });
 
                 $spread.css({
@@ -308,7 +315,9 @@ $(function(){ // DOCUMENT READY...
                         'left' : 0,
                         'right' : 'auto'
                     }).animate({ 'width' : '100%' }, 900, function(){
-                        $mainWrap.removeClass('pointerNone');
+                        setTimeout(function(){                        
+                            $mainWrap.removeClass('pointerNone');
+                        }, 1000);
                     });
                 });
 
@@ -363,8 +372,8 @@ $(function(){ // DOCUMENT READY...
     }
 
     // resize 적용시
-    $(window).on('resize', function(){
-        if ( $mainWrap.hasClass('right') ){
+    $(window).on('resize', function(){        
+        if ( $mainWrap.hasClass('right') ){            
             $spread.css({
                 'left' : spread().right,
                 'transition' : 'all 0s'
