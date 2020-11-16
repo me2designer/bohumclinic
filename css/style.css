@@ -12,7 +12,7 @@
     layout
 ****************************************************************************/
 /* Frame */
-html,body {overflow:hidden;background:#000 url('/img/body_bg_pattern.png') 0 0}
+html,body {overflow:hidden;background:#000 url('img/body_bg_pattern.png') 0 0}
 #wrap {overflow:hidden;position:fixed;left:50%;top:50%;width:1920px;height:0;font-family:'NotoSansKR',sans-serif;letter-spacing:-0.03em;opacity:0;transform:translate(-50%, -50%);}
 #wrap.active {visibility:visible;height:100%;min-height:920px;max-height:1080px;opacity:1}
 
@@ -61,11 +61,11 @@ html,body {overflow:hidden;background:#000 url('/img/body_bg_pattern.png') 0 0}
 /* 커서 형태 변경 */
 #cursor  {position:absolute;z-index:10;width:90px;height:66px;margin:40px 0 0 -45px;background: 0 0 no-repeat;transition:opacity 0.3s;animation:cursorBG 0.8s infinite alternate ease-in-out, cursorUpdown 1.2s infinite alternate ease-in-out}
 #cursor.hide {opacity:0}
-#wrap.center[cursor-focus="sign"] #cursor {background-image:url('/img/cursor_center.png')}
+#wrap.center[cursor-focus="sign"] #cursor {background-image:url('img/cursor_center.png')}
 #wrap.center[cursor-focus="shop"] #cursor,
-#wrap.right[cursor-focus="shop"] #cursor {background-image:url('/img/cursor_left.png?v=1')}
+#wrap.right[cursor-focus="shop"] #cursor {background-image:url('img/cursor_left.png?v=1')}
 #wrap.center[cursor-focus="fa"] #cursor,
-#wrap.left[cursor-focus="fa"] #cursor {background-image:url('/img/cursor_right.png?v=1')}
+#wrap.left[cursor-focus="fa"] #cursor {background-image:url('img/cursor_right.png?v=1')}
 @keyframes cursorBG {        
     0%, 24.99%          {background-position-y:0}
     25%, 49.99%         {background-position-y:-66px}
@@ -96,7 +96,7 @@ html,body {overflow:hidden;background:#000 url('/img/body_bg_pattern.png') 0 0}
 
 /* 표지판 */
 #sign {position:relative;z-index:1;text-align:center;height:100%}
-#sign .inner {display:inline-block;position:relative;height:100%;width:850px;background:url('/img/visual_sign.png') center bottom no-repeat;background-size:95%}
+#sign .inner {display:inline-block;position:relative;height:100%;width:850px;background:url('img/visual_sign.png') center bottom no-repeat;background-size:95%}
 #sign .board {position:absolute;top:-130px;left:50%;z-index:1;transform:translateX(-50%)}
 #sign .board img {width:500px;max-width:none}
 #sign .btn_shop {position:absolute;top:-95px;left:-2px;height:9.2%}
@@ -135,7 +135,7 @@ html,body {overflow:hidden;background:#000 url('/img/body_bg_pattern.png') 0 0}
 #shop .link_shop:before {animation:shopLinkCircle1 1s infinite}
 #shop .link_shop:after {animation:shopLinkCircle2 1s  0.2s infinite}
 #shop .link_shop span {position:absolute;top:50%;left:50%;z-index:1;font-family:'HGGGothicssi';font-size:26px;font-weight:800;color:#fff;white-space:nowrap;transform:translate(-50%, -50%)}
-#shop .link_shop span:after {content:'';position:absolute;bottom:-45px;left:50%;width:55px;height:45px;margin-left:-28px;background:url('/img/visual_shop_link.png') 0 0 no-repeat;animation:shopLinkArr 0.5s infinite alternate ease-in-out}
+#shop .link_shop span:after {content:'';position:absolute;bottom:-45px;left:50%;width:55px;height:45px;margin-left:-28px;background:url('img/visual_shop_link.png') 0 0 no-repeat;animation:shopLinkArr 0.5s infinite alternate ease-in-out}
 #shop .model {display:block;width:auto;height:100%;opacity:0;transform:translateX(-50%)}
 #wrap.left #shop {pointer-events:all}
 #wrap.left #shop .txt_area p {text-indent:0;opacity:1;transition:text-indent 0.5s 1.5s ease-in-out, opacity 0.5s 1.5s ease-in-out}
@@ -165,7 +165,7 @@ html,body {overflow:hidden;background:#000 url('/img/body_bg_pattern.png') 0 0}
 #fa .link_fa:before {animation:shopLinkCircle1 1s infinite}
 #fa .link_fa:after {animation:shopLinkCircle2 1s  0.2s infinite}
 #fa .link_fa span {position:absolute;top:50%;left:50%;z-index:1;font-family:'HGGGothicssi';font-size:26px;font-weight:800;color:#fff;white-space:nowrap;transform:translate(-50%, -50%)}
-#fa .link_fa span:after {content:'';position:absolute;left:-50px;top:50%;width:45px;height:55px;margin-top:-26px;background:url('/img/visual_fa_link.png') 0 0 no-repeat;animation:shopLinkArr2 0.5s infinite alternate ease-in-out}
+#fa .link_fa span:after {content:'';position:absolute;left:-50px;top:50%;width:45px;height:55px;margin-top:-26px;background:url('img/visual_fa_link.png') 0 0 no-repeat;animation:shopLinkArr2 0.5s infinite alternate ease-in-out}
 #wrap.right #fa {pointer-events:all}
 #wrap.right #fa .txt_area p {opacity:1;transform:translateX(0);transition:all 0.5s 1.5s ease-in-out}
 #wrap.right #fa .txt_area p:nth-child(2) {transition-delay:1.7s;animation:textFaLoop 1s 1.7s alternate infinite ease-in-out}
