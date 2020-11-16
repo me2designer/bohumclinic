@@ -451,9 +451,9 @@ $(function(){ // DOCUMENT READY...
                 }
 
                 if (posX < wrapL){
-                    $cursor.css('background-image','url(img/cursor_left.png)');
+                    $cursor.css('background-image','url(../img/cursor_left.png)');
                 } else {
-                    $cursor.css('background-image','url(img/cursor_right.png)');
+                    $cursor.css('background-image','url(../img/cursor_right.png)');
                 }
             } else if ( $mainWrap.hasClass('left') ){
                 if (posX > sidenavR){
